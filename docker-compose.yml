@@ -1,0 +1,130 @@
+﻿# RiskShield — local development stack
+# `make compose-up` (or `docker compose up`) brings up the full data-plane.
+
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: riskshield-postgres
+    environment: { POSTGRES_USER: app, POSTGRES_PASSWORD: app, POSTGRES_DB: app }
+    ports: ["5432:5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  mongodb:
+    image: mongo:8.0
+    container_name: riskshield-mongo
+    ports: ["27017:27017"]
+    volumes: ["mongo-data:/data/db"]
+
+  redis:
+    image: redis:7-alpine
+    container_name: riskshield-redis
+    ports: ["6379:6379"]
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redis-data:/data"]
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.7.1
+    container_name: riskshield-zookeeper
+    environment: { ZOOKEEPER_CLIENT_PORT: 2181, ZOOKEEPER_TICK_TIME: 2000 }
+
+  kafka:
+    image: confluentinc/cp-kafka:7.7.1
+    container_name: riskshield-kafka
+    depends_on: [zookeeper]
+    ports: ["9092:9092"]
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.7.1
+    container_name: riskshield-schema-registry
+    depends_on: [kafka]
+    ports: ["8081:8081"]
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+
+  minio:
+    image: minio/minio:latest
+    container_name: riskshield-minio
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment: { MINIO_ROOT_USER: minioadmin, MINIO_ROOT_PASSWORD: minioadmin }
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["minio-data:/data"]
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    container_name: riskshield-keycloak
+    command: ["start-dev"]
+    environment: { KEYCLOAK_ADMIN: admin, KEYCLOAK_ADMIN_PASSWORD: admin }
+    ports: ["8080:8080"]
+
+  vault:
+    image: hashicorp/vault:1.17
+    container_name: riskshield-vault
+    cap_add: [IPC_LOCK]
+    environment: { VAULT_DEV_ROOT_TOKEN_ID: root, VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200" }
+    ports: ["8200:8200"]
+
+  prometheus:
+    image: prom/prometheus:v2.55.0
+    container_name: riskshield-prometheus
+    ports: ["9090:9090"]
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: riskshield-grafana
+    ports: ["3001:3000"]
+    environment: { GF_SECURITY_ADMIN_PASSWORD: admin }
+
+  loki:
+    image: grafana/loki:3.2.0
+    container_name: riskshield-loki
+    ports: ["3100:3100"]
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.61
+    container_name: riskshield-jaeger
+    ports: ["16686:16686", "4317:4317", "4318:4318"]
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    container_name: riskshield-es
+    environment: { discovery.type: single-node, xpack.security.enabled: "false", ES_JAVA_OPTS: "-Xms1g -Xmx1g" }
+    ports: ["9200:9200"]
+
+  opensearch:
+    image: opensearchproject/opensearch:2.17.1
+    container_name: riskshield-os
+    environment: { discovery.type: single-node, plugins.security.disabled: "true", OPENSEARCH_INITIAL_ADMIN_PASSWORD: AdminPass123! }
+    ports: ["9201:9200"]
+
+  cassandra:
+    image: cassandra:5.0
+    container_name: riskshield-cassandra
+    ports: ["9042:9042"]
+    volumes: ["cassandra-data:/var/lib/cassandra"]
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: riskshield-rabbit
+    ports: ["5672:5672", "15672:15672"]
+
+volumes:
+  postgres-data:
+  mongo-data:
+  redis-data:
+  minio-data:
+  cassandra-data:
