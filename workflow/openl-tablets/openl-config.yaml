@@ -1,0 +1,5 @@
+# OpenL Tablets — Excel-driven insurance pricing tables
+image: { repository: openltablets/webstudio, tag: 5.27.7 }
+ingress:
+  enabled: true
+  hosts: [{ host: openl.riskshield.internal }]

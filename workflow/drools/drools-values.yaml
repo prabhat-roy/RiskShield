@@ -1,0 +1,6 @@
+# Drools — business rules engine for underwriting + claims adjudication
+image: { repository: kiegroup/kie-server, tag: 7.74.1.Final }
+postgresql: { enabled: true }
+ingress:
+  enabled: true
+  hosts: [{ host: drools.riskshield.internal }]
