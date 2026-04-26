@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: riskshield-gcp
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/prabhat-roy/RiskShield.git
+        revision: HEAD
+        directories:
+          - path: helm/charts/*
+  template:
+    metadata:
+      name: '{{path.basename}}-gcp'
+      labels: { cloud: gcp, riskshield.io/managed-by: argocd }
+    spec:
+      project: riskshield
+      source:
+        repoURL: https://github.com/prabhat-roy/RiskShield.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles: [values.yaml, values-gcp.yaml]
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: riskshield
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true, ServerSideApply=true]

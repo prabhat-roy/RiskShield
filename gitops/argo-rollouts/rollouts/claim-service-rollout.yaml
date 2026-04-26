@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: claim-service, namespace: riskshield }
+spec:
+  replicas: 4
+  strategy:
+    canary:
+      steps:
+        - setWeight: 5
+        - pause: { duration: 10m }
+        - analysis:
+            templates: [{ templateName: riskshield-canary-analysis }]
+            args: [{ name: service-name, value: claim-service }]
+        - setWeight: 25
+        - pause: { duration: 10m }
+        - setWeight: 50
+        - pause: { duration: 10m }
+        - setWeight: 100
+  selector:
+    matchLabels: { app.kubernetes.io/name: claim-service }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: claim-service }
+    spec:
+      containers:
+        - name: claim-service
+          image: harbor.riskshield.internal/riskshield/claim-service
+          ports: [{ containerPort: 8080 }]

@@ -1,0 +1,16 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata: { name: require-riskshield-labels }
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-required-labels
+      match:
+        any: [{ resources: { kinds: [Deployment, StatefulSet] } }]
+      validate:
+        message: "missing required labels: app.kubernetes.io/name, riskshield.io/domain"
+        pattern:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "?*"
+              riskshield.io/domain: "?*"

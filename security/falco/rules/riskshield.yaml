@@ -1,0 +1,31 @@
+- rule: Unexpected outbound connection from riskshield namespace
+  desc: Detects unexpected egress from RiskShield workloads.
+  condition: >
+    evt.type=connect and evt.dir=< and
+    container and k8s_ns_name startswith "riskshield" and
+    not fd.sip in (allowed_riskshield_egress)
+  output: "Unexpected egress from %container.name to %fd.sip:%fd.sport"
+  priority: WARNING
+  tags: [network, riskshield]
+
+- rule: Sanction list raw read bypassing cache
+  desc: Detected service reading sanction CSV directly without going via Redis cache.
+  condition: >
+    fd.name endswith ".sdn.csv" and
+    not k8s.pod.label.app.kubernetes.io/name="sanction-screening"
+  output: "Raw sanction list read by %container.name (must go via sanction-screening service)"
+  priority: CRITICAL
+  tags: [pii, riskshield, compliance]
+
+- rule: Pricing engine attempted IO
+  desc: Haskell pricing engine should be pure; flag any unexpected file write.
+  condition: >
+    evt.type in (open,openat,creat) and evt.dir=< and evt.is_open_write=true and
+    container and k8s.pod.label.app.kubernetes.io/name="pricing-engine" and
+    not fd.name startswith "/tmp/" and not fd.name startswith "/proc/"
+  output: "Pricing engine attempted file write: %fd.name (CLAUDE.md rule: keep pure)"
+  priority: ERROR
+  tags: [actuarial, riskshield]
+
+- list: allowed_riskshield_egress
+  items: ["10.0.0.0/8","172.16.0.0/12"]

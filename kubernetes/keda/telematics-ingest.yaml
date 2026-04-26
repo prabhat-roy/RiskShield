@@ -1,0 +1,14 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: telematics-ingest, namespace: riskshield }
+spec:
+  scaleTargetRef: { name: telematics-service }
+  minReplicaCount: 6
+  maxReplicaCount: 60
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.messaging:9092
+        consumerGroup: telematics-service
+        topic: telematics.event.ingest
+        lagThreshold: "5000"

@@ -1,0 +1,16 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: riskshield-jwt, namespace: riskshield }
+plugin: jwt
+config:
+  uri_param_names: [jwt]
+  cookie_names: [jwt]
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: riskshield-acord-rate-limit, namespace: riskshield }
+plugin: rate-limiting
+config:
+  minute: 60      # ACORD partner traffic — keep tight
+  policy: redis
+  redis_host: redis.messaging

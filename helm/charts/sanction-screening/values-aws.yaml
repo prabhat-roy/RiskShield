@@ -1,0 +1,7 @@
+cloud: {provider: aws, storageClass: gp3, ingressClass: alb}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-sanction-screening
+podAnnotations: {iam.amazonaws.com/role: riskshield-sanction-screening}
+envFrom:
+  - secretRef: {name: sanction-screening-aws-secrets}

@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: schema-registry, namespace: kafka }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: schema-registry } }
+  template:
+    metadata: { labels: { app: schema-registry } }
+    spec:
+      containers:
+        - name: schema-registry
+          image: confluentinc/cp-schema-registry:7.7.1
+          env:
+            - { name: SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS, value: riskshield-kafka-bootstrap:9092 }
+            - { name: SCHEMA_REGISTRY_HOST_NAME, value: schema-registry }
+            - { name: SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL, value: BACKWARD }

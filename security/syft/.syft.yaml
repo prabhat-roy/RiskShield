@@ -1,0 +1,3 @@
+output: cyclonedx-json
+catalogers:
+  enabled: [java, go-module, python, npm, rust, dpkg, apk, haskell]

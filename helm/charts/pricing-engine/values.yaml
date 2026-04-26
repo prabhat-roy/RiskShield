@@ -1,0 +1,22 @@
+image: {repository: riskshield/pricing-engine, tag: "", pullPolicy: IfNotPresent}
+replicaCount: 4
+service: {type: ClusterIP, port: 9090, targetPort: 9090}
+resources:
+  requests: {cpu: 1000m, memory: 2Gi}
+  limits: {cpu: 4000m, memory: 8Gi}
+probes:
+  liveness: {httpGet: {path: /healthz, port: 9090}, initialDelaySeconds: 30, periodSeconds: 20}
+  readiness: {httpGet: {path: /healthz, port: 9090}, initialDelaySeconds: 10, periodSeconds: 10}
+serviceAccount: {create: true, annotations: {}}
+podLabels:
+  app.kubernetes.io/name: pricing-engine
+  app.kubernetes.io/part-of: riskshield
+  riskshield.io/domain: actuarial
+  riskshield.io/owner-team: actuarial
+podAnnotations: {}
+securityContext: {runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: {type: RuntimeDefault}}
+containerSecurityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: ["ALL"]}}
+env: []
+envFrom: []
+config: {LOG_LEVEL: info, GHC_RTS_OPTS: "-N4"}
+cloud: {provider: "", storageClass: "", ingressClass: ""}

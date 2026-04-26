@@ -1,0 +1,19 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata: { name: riskshield, namespace: messaging }
+spec:
+  replicas: 3
+  resources:
+    requests: { cpu: 1, memory: 4Gi }
+    limits:   { cpu: 4, memory: 8Gi }
+  persistence:
+    storageClassName: gp3
+    storage: 200Gi
+  rabbitmq:
+    additionalPlugins:
+      - rabbitmq_delayed_message_exchange
+      - rabbitmq_management
+      - rabbitmq_prometheus
+    additionalConfig: |
+      cluster_partition_handling = pause_minority
+      vm_memory_high_watermark.relative = 0.6

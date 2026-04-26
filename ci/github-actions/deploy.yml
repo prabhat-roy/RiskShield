@@ -1,0 +1,49 @@
+name: deploy
+on:
+  workflow_dispatch:
+    inputs:
+      cloud:    { type: choice, options: [aws, gcp, azure], required: true }
+      env:      { type: choice, options: [dev, staging, prod], required: true }
+      service:  { type: string, default: all }
+      version:  { type: string, default: latest }
+      strategy: { type: choice, options: [blue-green, canary, rolling], default: canary }
+permissions: { id-token: write, contents: read }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: AWS auth
+        if: inputs.cloud == 'aws'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeploy
+          aws-region: eu-west-1
+      - name: GCP auth
+        if: inputs.cloud == 'gcp'
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_DEPLOY_SA }}
+      - name: Azure auth
+        if: inputs.cloud == 'azure'
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Helm install
+        run: |
+          set -euo pipefail
+          for chart in helm/charts/*/; do
+            name=$(basename "$chart")
+            # Force blue-green for policy-admin + settlement-service
+            STRAT="${{ inputs.strategy }}"
+            case "$name" in policy-admin|settlement-service) STRAT=blue-green ;; esac
+            helm upgrade --install "$name" "$chart" \
+              -n riskshield --create-namespace \
+              -f "$chart/values.yaml" \
+              -f "$chart/values-${{ inputs.cloud }}.yaml" \
+              --set image.tag=${{ inputs.version }} \
+              --set rollout.strategy=$STRAT
+          done

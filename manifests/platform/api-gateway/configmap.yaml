@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gateway
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: api-gateway, riskshield.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "50000"
+  KEYCLOAK_ISSUER: "https://auth-service.riskshield-identity:50000/realms/riskshield"

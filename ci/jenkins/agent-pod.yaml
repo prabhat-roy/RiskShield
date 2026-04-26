@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels: { jenkins: agent }
+spec:
+  containers:
+    - name: jnlp
+      image: jenkins/inbound-agent:latest
+    - name: tools
+      image: riskshield/jenkins-agent:latest
+      tty: true
+      command: ["sleep","infinity"]
+    - name: docker
+      image: docker:27-dind
+      securityContext: { privileged: true }
+    - name: ghc
+      image: haskell:9.8
+      tty: true
+      command: ["sleep","infinity"]
+    - name: rstats
+      image: rocker/r-ver:4.4
+      tty: true
+      command: ["sleep","infinity"]

@@ -1,0 +1,21 @@
+server:
+  bind_address: "0.0.0.0"
+  bind_port: "8081"
+  trust_domain: riskshield.internal
+  data_dir: /run/spire/data
+  log_level: INFO
+  ca_subject:
+    country: ["GB"]
+    organization: ["RiskShield"]
+    common_name: "RiskShield SPIRE CA"
+
+plugins:
+  DataStore:
+    sql:
+      plugin_data: { database_type: "sqlite3", connection_string: "/run/spire/data/datastore.sqlite3" }
+  KeyManager:
+    disk:
+      plugin_data: { keys_path: "/run/spire/data/keys.json" }
+  NodeAttestor:
+    k8s_psat:
+      plugin_data: { clusters: { riskshield: { service_account_allow_list: ["spire:spire-agent"] } } }

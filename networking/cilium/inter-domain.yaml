@@ -1,0 +1,12 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata: { name: riskshield-cross-domain-bff-only, namespace: riskshield }
+spec:
+  endpointSelector: { matchLabels: { app.kubernetes.io/part-of: riskshield } }
+  ingress:
+    - fromEndpoints:
+        - matchLabels: { app.kubernetes.io/name: api-gateway }
+        - matchLabels: { app.kubernetes.io/name: customer-bff }
+        - matchLabels: { app.kubernetes.io/name: agent-bff }
+        - matchLabels: { app.kubernetes.io/name: claims-bff }
+        - matchLabels: { app.kubernetes.io/name: graphql-gateway }

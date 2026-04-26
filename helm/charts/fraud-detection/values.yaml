@@ -1,0 +1,22 @@
+image: {repository: riskshield/fraud-detection, tag: "", pullPolicy: IfNotPresent}
+replicaCount: 4
+service: {type: ClusterIP, port: 8000, targetPort: 8000}
+resources:
+  requests: {cpu: 1000m, memory: 2Gi}
+  limits: {cpu: 4000m, memory: 8Gi}
+probes:
+  liveness: {httpGet: {path: /healthz, port: 8000}, initialDelaySeconds: 30, periodSeconds: 20}
+  readiness: {httpGet: {path: /healthz, port: 8000}, initialDelaySeconds: 10, periodSeconds: 10}
+serviceAccount: {create: true, annotations: {}}
+podLabels:
+  app.kubernetes.io/name: fraud-detection
+  app.kubernetes.io/part-of: riskshield
+  riskshield.io/domain: fraud
+  riskshield.io/owner-team: fraud
+podAnnotations: {}
+securityContext: {runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: {type: RuntimeDefault}}
+containerSecurityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: ["ALL"]}}
+env: []
+envFrom: []
+config: {LOG_LEVEL: info, MODEL_REGISTRY_URL: "https://mlflow.riskshield.svc:5000"}
+cloud: {provider: "", storageClass: "", ingressClass: ""}

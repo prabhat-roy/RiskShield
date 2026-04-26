@@ -1,0 +1,54 @@
+stages: [build, scan, sign, push]
+variables:
+  REGISTRY: harbor.riskshield.internal
+  COSIGN_EXPERIMENTAL: '1'
+
+.kaniko_build:
+  stage: build
+  image: gcr.io/kaniko-project/executor:debug
+  script:
+    - >-
+      /kaniko/executor
+      --context "$CI_PROJECT_DIR/$SERVICE_DIR"
+      --dockerfile "$CI_PROJECT_DIR/$SERVICE_DIR/Dockerfile"
+      --destination "${REGISTRY}/riskshield/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+      --cache=true
+
+.trivy_scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  script:
+    - trivy image --exit-code 1 --severity CRITICAL,HIGH "${REGISTRY}/riskshield/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+
+.syft_sbom:
+  stage: scan
+  image: anchore/syft:latest
+  script:
+    - syft "${REGISTRY}/riskshield/${SERVICE_NAME}:${CI_COMMIT_SHA}" -o cyclonedx-json > sbom.json
+  artifacts: { paths: [sbom.json] }
+
+.cosign_sign:
+  stage: sign
+  image: gcr.io/projectsigstore/cosign:latest
+  script:
+    - cosign sign --yes "${REGISTRY}/riskshield/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+
+policy-admin:
+  variables: { SERVICE_DIR: src/policy/policy-admin, SERVICE_NAME: policy-admin }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+claim-service:
+  variables: { SERVICE_DIR: src/claims/claim-service, SERVICE_NAME: claim-service }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+pricing-engine:
+  variables: { SERVICE_DIR: src/actuarial/pricing-engine, SERVICE_NAME: pricing-engine }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+fraud-detection:
+  variables: { SERVICE_DIR: src/fraud/fraud-detection, SERVICE_NAME: fraud-detection }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+sanction-screening:
+  variables: { SERVICE_DIR: src/compliance/sanction-screening, SERVICE_NAME: sanction-screening }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]

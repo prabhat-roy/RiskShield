@@ -1,0 +1,29 @@
+image: {repository: riskshield/claims-bff, tag: "", pullPolicy: IfNotPresent}
+replicaCount: 2
+service: {type: ClusterIP, port: 50000, targetPort: 50000}
+resources:
+  requests: {cpu: 100m, memory: 128Mi}
+  limits: {cpu: 1000m, memory: 512Mi}
+probes:
+  liveness: {httpGet: {path: /healthz, port: 50000}, initialDelaySeconds: 15, periodSeconds: 20}
+  readiness: {httpGet: {path: /healthz, port: 50000}, initialDelaySeconds: 5, periodSeconds: 10}
+serviceAccount: {create: true, annotations: {}}
+podLabels:
+  app.kubernetes.io/name: claims-bff
+  app.kubernetes.io/part-of: riskshield
+  riskshield.io/domain: platform
+  riskshield.io/owner-team: claims
+podAnnotations: {}
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+  seccompProfile: {type: RuntimeDefault}
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities: {drop: ["ALL"]}
+env: []
+envFrom: []
+config: {LOG_LEVEL: info}
+cloud: {provider: "", storageClass: "", ingressClass: ""}

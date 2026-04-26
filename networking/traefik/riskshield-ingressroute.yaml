@@ -1,0 +1,11 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata: { name: riskshield, namespace: riskshield }
+spec:
+  entryPoints: [websecure]
+  routes:
+    - match: Host(`api.riskshield.io`)
+      kind: Rule
+      services: [{ name: api-gateway, port: 50000 }]
+      middlewares: [{ name: riskshield-rate-limit }, { name: riskshield-headers }]
+  tls: { secretName: riskshield-tls }

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: riskshield-aws
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/prabhat-roy/RiskShield.git
+        revision: HEAD
+        directories:
+          - path: helm/charts/*
+  template:
+    metadata:
+      name: '{{path.basename}}-aws'
+      labels:
+        cloud: aws
+        riskshield.io/managed-by: argocd
+    spec:
+      project: riskshield
+      source:
+        repoURL: https://github.com/prabhat-roy/RiskShield.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+            - values-aws.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: riskshield
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true

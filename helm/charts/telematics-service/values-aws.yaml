@@ -1,0 +1,7 @@
+cloud: {provider: aws, storageClass: gp3, ingressClass: alb}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-telematics-service
+podAnnotations: {iam.amazonaws.com/role: riskshield-telematics-service}
+envFrom:
+  - secretRef: {name: telematics-service-aws-secrets}

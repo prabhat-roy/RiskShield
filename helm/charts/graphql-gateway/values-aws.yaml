@@ -1,0 +1,7 @@
+cloud: {provider: aws, storageClass: gp3, ingressClass: alb}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-graphql-gateway
+podAnnotations: {iam.amazonaws.com/role: riskshield-graphql-gateway}
+envFrom:
+  - secretRef: {name: graphql-gateway-aws-secrets}

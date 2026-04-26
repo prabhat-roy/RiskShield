@@ -1,0 +1,7 @@
+cloud: {provider: aws, storageClass: gp3, ingressClass: alb}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-claim-service
+podAnnotations: {iam.amazonaws.com/role: riskshield-claim-service}
+envFrom:
+  - secretRef: {name: claim-service-aws-secrets}

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: policy-admin, namespace: riskshield }
+spec:
+  replicas: 4
+  # CLAUDE.md rule: blue-green for policy admin and claims settlement.
+  strategy:
+    blueGreen:
+      activeService: policy-admin-active
+      previewService: policy-admin-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 600
+      prePromotionAnalysis:
+        templates: [{ templateName: riskshield-canary-analysis }]
+        args:
+          - { name: service-name, value: policy-admin }
+  selector:
+    matchLabels: { app.kubernetes.io/name: policy-admin }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: policy-admin }
+    spec:
+      containers:
+        - name: policy-admin
+          image: harbor.riskshield.internal/riskshield/policy-admin
+          ports: [{ containerPort: 8080 }]

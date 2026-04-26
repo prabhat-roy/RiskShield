@@ -1,0 +1,19 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata: { name: verify-image-signatures }
+spec:
+  validationFailureAction: Enforce
+  webhookTimeoutSeconds: 30
+  rules:
+    - name: verify-cosign
+      match:
+        any: [{ resources: { kinds: [Pod] } }]
+      verifyImages:
+        - imageReferences: ["harbor.riskshield.internal/riskshield/*"]
+          attestors:
+            - entries:
+                - keys:
+                    publicKeys: |
+                      -----BEGIN PUBLIC KEY-----
+                      <pinned-cosign-public-key>
+                      -----END PUBLIC KEY-----

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: policy-admin
+description: ACORD-aligned policy administration (issue, endorse, cancel)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

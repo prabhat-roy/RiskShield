@@ -1,0 +1,10 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: sanction-screening, namespace: riskshield }
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: sanction-screening }
+  minReplicas: 4
+  maxReplicas: 30
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: 60 } }

@@ -1,0 +1,16 @@
+# AWS overlay for api-gateway.
+cloud:
+  provider: aws
+  storageClass: gp3
+  ingressClass: alb
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-api-gateway
+
+podAnnotations:
+  iam.amazonaws.com/role: riskshield-api-gateway
+
+envFrom:
+  - secretRef:
+      name: api-gateway-aws-secrets

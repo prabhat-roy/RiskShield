@@ -1,0 +1,14 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: fnol-ingest, namespace: riskshield }
+spec:
+  scaleTargetRef: { name: fnol-service }
+  minReplicaCount: 2
+  maxReplicaCount: 30
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.messaging:9092
+        consumerGroup: fnol-service
+        topic: claims.fnol.received
+        lagThreshold: "200"

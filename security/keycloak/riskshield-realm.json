@@ -1,0 +1,35 @@
+{
+  "realm": "riskshield",
+  "enabled": true,
+  "sslRequired": "all",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "passwordPolicy": "length(14) and upperCase(1) and lowerCase(1) and digits(1) and specialChars(1) and notUsername and passwordHistory(10)",
+  "otpPolicyType": "totp",
+  "otpPolicyDigits": 6,
+  "browserSecurityHeaders": {
+    "contentSecurityPolicy": "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+    "strictTransportSecurity": "max-age=63072000; includeSubDomains"
+  },
+  "clients": [
+    { "clientId": "customer-portal",  "publicClient": true,  "redirectUris": ["https://customer.riskshield.io/*"] },
+    { "clientId": "agent-portal",     "publicClient": true,  "redirectUris": ["https://agent.riskshield.io/*"] },
+    { "clientId": "claims-portal",    "publicClient": true,  "redirectUris": ["https://claims.riskshield.io/*"] },
+    { "clientId": "underwriter-portal","publicClient": true, "redirectUris": ["https://uw.riskshield.io/*"] },
+    { "clientId": "compliance-officer-console", "publicClient": false, "secret": "${COMPLIANCE_CLIENT_SECRET}" }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "customer" },
+      { "name": "agent" },
+      { "name": "broker" },
+      { "name": "underwriter" },
+      { "name": "claims-handler" },
+      { "name": "loss-adjuster" },
+      { "name": "actuary" },
+      { "name": "compliance-officer" },
+      { "name": "siu-investigator" },
+      { "name": "platform-admin" }
+    ]
+  }
+}

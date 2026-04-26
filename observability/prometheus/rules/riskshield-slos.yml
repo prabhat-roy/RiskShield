@@ -1,0 +1,22 @@
+groups:
+  - name: riskshield-slo-burn
+    rules:
+      - alert: RiskShieldErrorBudgetBurn
+        expr: |
+          (
+            sum(rate(http_requests_total{namespace=~"riskshield.*",status=~"5.."}[5m])) by (app)
+            /
+            sum(rate(http_requests_total{namespace=~"riskshield.*"}[5m])) by (app)
+          ) > 0.005
+        for: 5m
+        labels: { severity: critical, team: '{{ $labels.app }}' }
+        annotations: { summary: "Error rate >0.5% for {{ $labels.app }}" }
+
+      - alert: RiskShieldLatencyP99
+        expr: |
+          histogram_quantile(0.99,
+            sum by (app, le) (rate(http_request_duration_seconds_bucket{namespace=~"riskshield.*"}[5m]))
+          ) > 1
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "p99 latency >1s for {{ $labels.app }}" }

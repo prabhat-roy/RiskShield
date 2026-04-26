@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: { name: api-gateway, namespace: riskshield }
+spec:
+  hosts: [api.riskshield.io]
+  gateways: [istio-system/riskshield]
+  http:
+    - route:
+        - destination: { host: api-gateway, port: { number: 50000 } }
+      retries: { attempts: 3, perTryTimeout: 2s, retryOn: 5xx }
+      timeout: 30s
+---
+# ACORD endpoint — routed to graphql-gateway with stricter timeouts
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: { name: acord-gateway, namespace: riskshield }
+spec:
+  hosts: [acord.riskshield.io]
+  gateways: [istio-system/riskshield]
+  http:
+    - match:
+        - uri: { prefix: /acord/ }
+      route:
+        - destination: { host: graphql-gateway, port: { number: 50000 } }
+      retries: { attempts: 1, perTryTimeout: 5s }   # ACORD payloads are large; no retry storms
+      timeout: 60s

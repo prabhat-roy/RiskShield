@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: { name: riskshield-ci-build, namespace: argo }
+spec:
+  entrypoint: build
+  arguments:
+    parameters:
+      - { name: service }
+      - { name: git-ref, value: main }
+  templates:
+    - name: build
+      dag:
+        tasks:
+          - { name: clone, template: git-clone }
+          - { name: lint,  template: lint,  dependencies: [clone] }
+          - { name: test,  template: test,  dependencies: [clone] }
+          - { name: build, template: kaniko, dependencies: [lint, test] }
+          - { name: scan,  template: trivy, dependencies: [build] }
+          - { name: sign,  template: cosign, dependencies: [scan] }
+    - name: git-clone
+      container: { image: alpine/git:latest, command: ["sh","-c","git clone https://github.com/prabhat-roy/RiskShield.git /workspace"] }
+    - name: lint
+      container: { image: riskshield/jenkins-agent:latest, command: ["bash","-c","cd /workspace && make lint"] }
+    - name: test
+      container: { image: riskshield/jenkins-agent:latest, command: ["bash","-c","cd /workspace && make test"] }
+    - name: kaniko
+      container: { image: gcr.io/kaniko-project/executor:latest }
+    - name: trivy
+      container: { image: aquasec/trivy:latest, command: ["trivy","image","--exit-code","1"] }
+    - name: cosign
+      container: { image: gcr.io/projectsigstore/cosign:latest }

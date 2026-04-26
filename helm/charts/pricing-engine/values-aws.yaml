@@ -1,0 +1,7 @@
+cloud: {provider: aws, storageClass: gp3, ingressClass: alb}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/riskshield-pricing-engine
+podAnnotations: {iam.amazonaws.com/role: riskshield-pricing-engine}
+envFrom:
+  - secretRef: {name: pricing-engine-aws-secrets}

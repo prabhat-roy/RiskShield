@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata: { name: riskshield-deploy }
+spec:
+  params:
+    - { name: cloud,    type: string }    # aws | gcp | azure
+    - { name: env,      type: string }
+    - { name: service,  type: string }
+    - { name: version,  type: string }
+    - { name: strategy, type: string, default: canary }
+  workspaces:
+    - { name: source }
+    - { name: kubeconfig }
+  tasks:
+    - name: helm-upgrade
+      taskRef: { name: helm-upgrade-from-source }
+      workspaces:
+        - { name: source,     workspace: source }
+        - { name: kubeconfig, workspace: kubeconfig }
+      params:
+        - { name: charts_dir,  value: "helm/charts/$(params.service)" }
+        - { name: namespace,   value: riskshield }
+        - { name: release_name, value: "$(params.service)" }
+        - { name: extra_values_files, value: "values.yaml,values-$(params.cloud).yaml" }
+        - { name: extra_set,   value: "rollout.strategy=$(params.strategy)" }

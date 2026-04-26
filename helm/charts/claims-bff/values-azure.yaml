@@ -1,0 +1,7 @@
+cloud: {provider: azure, storageClass: managed-csi, ingressClass: azure-application-gateway}
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: "{{ .Values.azure.clientId }}"
+podLabels: {azure.workload.identity/use: "true"}
+envFrom:
+  - secretRef: {name: claims-bff-azure-secrets}

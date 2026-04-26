@@ -1,0 +1,32 @@
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: api-gateway, namespace: riskshield }
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels: { app.kubernetes.io/name: api-gateway }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: sanction-screening, namespace: riskshield }
+spec:
+  minAvailable: 3
+  selector:
+    matchLabels: { app.kubernetes.io/name: sanction-screening }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: claim-service, namespace: riskshield }
+spec:
+  minAvailable: 3
+  selector:
+    matchLabels: { app.kubernetes.io/name: claim-service }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: pricing-engine, namespace: riskshield }
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels: { app.kubernetes.io/name: pricing-engine }

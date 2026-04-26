@@ -1,0 +1,6 @@
+severity: [CRITICAL, HIGH]
+ignore-unfixed: false
+scan:
+  scanners: [vuln, secret, config, license]
+vulnerability:
+  type: [os, library]

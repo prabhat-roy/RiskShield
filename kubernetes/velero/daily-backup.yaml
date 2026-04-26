@@ -1,0 +1,9 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata: { name: riskshield-daily, namespace: velero }
+spec:
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces: [riskshield, riskshield-policy, riskshield-claims, riskshield-actuarial, riskshield-finance, riskshield-compliance]
+    snapshotVolumes: true
+    ttl: 8760h0m0s   # 1 year (FCA/PRA audit window)

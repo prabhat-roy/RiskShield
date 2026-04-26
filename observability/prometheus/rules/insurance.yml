@@ -1,0 +1,55 @@
+groups:
+  - name: riskshield-insurance
+    rules:
+      - alert: SanctionScreeningRefreshStale
+        expr: time() - sanction_list_last_refresh_seconds > 14400
+        for: 5m
+        labels: { severity: critical, team: compliance }
+        annotations:
+          summary: "Sanction list not refreshed in >4h (Redis TTL ceiling)"
+          description: "CLAUDE.md rule: cache TTL = sanction list refresh interval (4h); never longer."
+
+      - alert: SanctionScreeningBlockRateDrop
+        expr: |
+          rate(sanction_screening_blocks_total[1h])
+          /
+          rate(sanction_screening_total[1h])
+          < 0.00005
+        for: 30m
+        labels: { severity: warning, team: compliance }
+        annotations: { summary: "Sanction-screening block rate has collapsed — possible cache poisoning?" }
+
+      - alert: BordereauxGenerationLag
+        expr: time() - bordereaux_last_generation_timestamp > 86400 * 32
+        for: 1h
+        labels: { severity: critical, team: reinsurance }
+        annotations: { summary: "Monthly bordereaux not generated for >32 days" }
+
+      - alert: PricingEngineLatency
+        expr: histogram_quantile(0.99, sum by (le) (rate(pricing_engine_quote_duration_seconds_bucket[5m]))) > 2
+        for: 5m
+        labels: { severity: warning, team: actuarial }
+        annotations: { summary: "Pricing engine p99 quote latency >2s" }
+
+      - alert: FNOLBacklog
+        expr: kafka_consumergroup_lag{topic="claims.fnol.received"} > 5000
+        for: 10m
+        labels: { severity: critical, team: claims }
+        annotations: { summary: "FNOL ingest lag >5000 events" }
+
+      - alert: TelematicsIngestLag
+        expr: kafka_consumergroup_lag{topic="telematics.event.ingest"} > 100000
+        for: 5m
+        labels: { severity: warning, team: telematics }
+        annotations: { summary: "Telematics ingest lag >100k events" }
+
+      - alert: FraudModelDriftScoreHigh
+        expr: fraud_detection_model_drift_score > 0.3
+        for: 1h
+        labels: { severity: warning, team: fraud }
+        annotations: { summary: "Fraud detection model drift score elevated — retrain candidate" }
+
+      - alert: SolvencyIICalcOverdue
+        expr: time() - solvency2_last_calc_timestamp > 86400 * 35
+        labels: { severity: critical, team: actuarial }
+        annotations: { summary: "Solvency II calculation overdue (>35d)" }

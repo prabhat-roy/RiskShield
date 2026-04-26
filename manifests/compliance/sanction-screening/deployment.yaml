@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sanction-screening
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: sanction-screening
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: compliance
+spec:
+  replicas: 4
+  selector: { matchLabels: { app.kubernetes.io/name: sanction-screening } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: sanction-screening, riskshield.io/domain: compliance }
+    spec:
+      serviceAccountName: sanction-screening
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: sanction-screening
+          image: harbor.riskshield.internal/riskshield/sanction-screening:latest
+          ports: [{ containerPort: 8080, name: http }]
+          envFrom: [{ configMapRef: { name: sanction-screening } }]
+          livenessProbe:  { httpGet: { path: /actuator/health/liveness,  port: 8080 }, initialDelaySeconds: 60 }
+          readinessProbe: { httpGet: { path: /actuator/health/readiness, port: 8080 }, initialDelaySeconds: 30 }
+          resources:
+            requests: { cpu: 500m, memory: 512Mi }
+            limits:   { cpu: 2000m, memory: 2Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

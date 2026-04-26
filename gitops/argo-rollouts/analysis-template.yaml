@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: riskshield-canary-analysis
+  namespace: riskshield
+spec:
+  args:
+    - name: service-name
+  metrics:
+    - name: success-rate
+      interval: 60s
+      successCondition: result[0] >= 0.995    # insurance grade — 99.5%
+      failureLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus.observability:9090
+          query: |
+            sum(rate(http_requests_total{service="{{args.service-name}}",status!~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total{service="{{args.service-name}}"}[5m]))
+    - name: p99-latency
+      interval: 60s
+      successCondition: result[0] <= 1
+      failureLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus.observability:9090
+          query: |
+            histogram_quantile(0.99,
+              sum(rate(http_request_duration_seconds_bucket{service="{{args.service-name}}"}[5m]))
+              by (le))
+    - name: sanction-screening-block-rate
+      # Drift-detector: if block rate suddenly drops, fail the canary (cache poisoning?)
+      interval: 60s
+      successCondition: result[0] >= 0.0001
+      failureLimit: 2
+      provider:
+        prometheus:
+          address: http://prometheus.observability:9090
+          query: |
+            sum(rate(sanction_screening_blocks_total{service="{{args.service-name}}"}[5m]))
+            /
+            sum(rate(sanction_screening_total{service="{{args.service-name}}"}[5m]))

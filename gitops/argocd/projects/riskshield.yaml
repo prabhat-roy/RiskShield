@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: riskshield
+  namespace: argocd
+spec:
+  description: RiskShield insurance platform applications
+  sourceRepos:
+    - https://github.com/prabhat-roy/RiskShield.git
+  destinations:
+    - { namespace: riskshield, server: https://kubernetes.default.svc }
+    - { namespace: riskshield-*, server: https://kubernetes.default.svc }
+  clusterResourceWhitelist:
+    - { group: '*', kind: '*' }
+  namespaceResourceWhitelist:
+    - { group: '*', kind: '*' }
+  roles:
+    - name: actuarial-readonly
+      description: Actuaries can view IFRS 17 / pricing-engine apps
+      policies:
+        - p, proj:riskshield:actuarial-readonly, applications, get, riskshield/pricing-engine-*, allow
+        - p, proj:riskshield:actuarial-readonly, applications, get, riskshield/ifrs17-engine-*, allow

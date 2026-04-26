@@ -1,0 +1,14 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: renewal-reminder, namespace: riskshield }
+spec:
+  scaleTargetRef: { name: renewal-service }
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: rabbitmq
+      metadata:
+        host: amqp://rabbitmq.messaging:5672/
+        queueName: renewal-reminder
+        mode: QueueLength
+        value: "100"

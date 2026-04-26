@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: { name: riskshield-domain-deploy, namespace: argo }
+spec:
+  entrypoint: deploy
+  arguments:
+    parameters:
+      - { name: domain }
+      - { name: cloud }
+      - { name: version }
+  templates:
+    - name: deploy
+      steps:
+        - - { name: status-page, template: cachet-update }
+        - - { name: db-migration, template: flyway-migrate }
+        - - { name: sanction-list-warm, template: sanction-warm }
+        - - { name: helm-upgrade, template: helm }
+        - - { name: smoke-tests, template: hurl-smoke }
+        - - { name: bordereaux-replay, template: bordereaux-check }
+    - name: cachet-update
+      container: { image: riskshield/jenkins-agent:latest }
+    - name: flyway-migrate
+      container: { image: flyway/flyway:10 }
+    - name: sanction-warm
+      # Pre-warm Redis sanction cache before any policy issuance
+      container: { image: riskshield/sanction-warm:latest }
+    - name: helm
+      container: { image: alpine/helm:3.16 }
+    - name: hurl-smoke
+      container: { image: ghcr.io/orange-opensource/hurl:5.0.1 }
+    - name: bordereaux-check
+      # Verify monthly bordereaux idempotency on (reinsurer_id, period)
+      container: { image: riskshield/bordereaux-check:latest }

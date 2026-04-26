@@ -1,0 +1,8 @@
+server: { http_listen_port: 3200 }
+storage:
+  trace:
+    backend: s3
+    s3: { bucket: riskshield-tempo, endpoint: s3.amazonaws.com, region: eu-west-1 }
+distributor: { receivers: { otlp: { protocols: { grpc: { endpoint: 0.0.0.0:4317 } } } } }
+ingester: { trace_idle_period: 30s }
+compactor: { compaction: { block_retention: 8760h } }   # 1y trace retention for audit

@@ -1,0 +1,7 @@
+cloud: {provider: gcp, storageClass: pd-balanced, ingressClass: gce}
+serviceAccount:
+  annotations:
+    iam.gke.io/gcp-service-account: riskshield-telematics-service@{{ .Values.gcp.project }}.iam.gserviceaccount.com
+podAnnotations: {cluster-autoscaler.kubernetes.io/safe-to-evict: "true"}
+envFrom:
+  - secretRef: {name: telematics-service-gcp-secrets}

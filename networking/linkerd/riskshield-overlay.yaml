@@ -1,0 +1,2 @@
+identity: { trustDomain: riskshield.internal }
+proxyInjector: { ignoreInboundPorts: ["4191"] }

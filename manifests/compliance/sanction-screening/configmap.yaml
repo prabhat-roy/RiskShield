@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: sanction-screening, namespace: riskshield, labels: { app.kubernetes.io/name: sanction-screening, riskshield.io/domain: compliance } }
+data:
+  LOG_LEVEL: info
+  SPRING_PROFILES_ACTIVE: prod
+  SANCTION_LIST_REFRESH_HOURS: "4"
+  REDIS_TTL_SECONDS: "14400"
+  SANCTION_SOURCES: "OFAC,UN,EU,HMT"

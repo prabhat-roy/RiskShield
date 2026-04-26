@@ -1,0 +1,37 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: { name: riskshield-default-deny, namespace: riskshield }
+spec: { action: DENY, rules: [{}] }
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: { name: allow-from-platform, namespace: riskshield }
+spec:
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/riskshield/sa/api-gateway
+              - cluster.local/ns/riskshield/sa/customer-bff
+              - cluster.local/ns/riskshield/sa/agent-bff
+              - cluster.local/ns/riskshield/sa/claims-bff
+              - cluster.local/ns/riskshield/sa/graphql-gateway
+---
+# Sanction-screening must be reachable only from policy / claims / customer / quote services
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: { name: sanction-screening-allowed-callers, namespace: riskshield }
+spec:
+  action: ALLOW
+  selector:
+    matchLabels: { app.kubernetes.io/name: sanction-screening }
+  rules:
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/riskshield/sa/policy-admin
+              - cluster.local/ns/riskshield/sa/claim-service
+              - cluster.local/ns/riskshield/sa/customer-service
+              - cluster.local/ns/riskshield/sa/quote-service
+              - cluster.local/ns/riskshield/sa/kyc-service

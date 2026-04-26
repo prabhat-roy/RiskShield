@@ -1,0 +1,69 @@
+# RabbitMQ delayed-job queues (CLAUDE.md: "RabbitMQ for delayed jobs")
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Exchange
+metadata: { name: riskshield-delayed, namespace: messaging }
+spec:
+  name: riskshield-delayed
+  type: x-delayed-message
+  durable: true
+  arguments: { x-delayed-type: direct }
+  rabbitmqClusterReference: { name: riskshield }
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata: { name: renewal-reminder, namespace: messaging }
+spec:
+  name: renewal-reminder
+  durable: true
+  rabbitmqClusterReference: { name: riskshield }
+  arguments:
+    x-message-ttl: 7776000000   # 90d
+    x-dead-letter-exchange: dlx
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata: { name: cancellation-grace, namespace: messaging }
+spec:
+  name: cancellation-grace
+  durable: true
+  rabbitmqClusterReference: { name: riskshield }
+  arguments:
+    x-message-ttl: 2592000000   # 30d grace period
+    x-dead-letter-exchange: dlx
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata: { name: bordereau-shipping, namespace: messaging }
+spec:
+  name: bordereau-shipping
+  durable: true
+  rabbitmqClusterReference: { name: riskshield }
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata: { name: dlx, namespace: messaging }
+spec:
+  name: dlx
+  durable: true
+  rabbitmqClusterReference: { name: riskshield }
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Binding
+metadata: { name: renewal-reminder-binding, namespace: messaging }
+spec:
+  source: riskshield-delayed
+  destinationType: queue
+  destination: renewal-reminder
+  routingKey: renewal-reminder
+  rabbitmqClusterReference: { name: riskshield }
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Binding
+metadata: { name: cancellation-grace-binding, namespace: messaging }
+spec:
+  source: riskshield-delayed
+  destinationType: queue
+  destination: cancellation-grace
+  routingKey: cancellation-grace
+  rabbitmqClusterReference: { name: riskshield }

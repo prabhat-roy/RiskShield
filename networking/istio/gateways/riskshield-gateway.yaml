@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata: { name: riskshield, namespace: istio-system }
+spec:
+  selector: { istio: ingressgateway }
+  servers:
+    - port: { number: 443, name: https, protocol: HTTPS }
+      tls: { mode: SIMPLE, credentialName: riskshield-tls }
+      hosts:
+        - riskshield.io
+        - api.riskshield.io
+        - customer.riskshield.io
+        - agent.riskshield.io
+        - claims.riskshield.io
+        - uw.riskshield.io
+        - acord.riskshield.io

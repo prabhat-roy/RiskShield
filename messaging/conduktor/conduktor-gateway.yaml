@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: conduktor-config, namespace: kafka }
+data:
+  config.yaml: |
+    interceptors:
+      - name: schema-validation
+        config: { allowedNamespaces: ["io.riskshield.*"] }
+      - name: pii-mask
+        config: { fields: [ssn, national_insurance_number, phone, email, pan, cvv] }
+      - name: rate-limit
+        config:
+          perPrincipal: { producer: 20000, consumer: 100000 }
+      - name: bordereau-idempotency
+        config:
+          topic: reinsurance.bordereau.generated
+          key: "${reinsurer_id}:${period}"

@@ -1,0 +1,145 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield
+  labels:
+    riskshield.io/domain: root
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/warn: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-platform
+  labels:
+    riskshield.io/domain: platform
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-identity
+  labels:
+    riskshield.io/domain: identity
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-policy
+  labels:
+    riskshield.io/domain: policy
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-underwriting
+  labels:
+    riskshield.io/domain: underwriting
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-claims
+  labels:
+    riskshield.io/domain: claims
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-reinsurance
+  labels:
+    riskshield.io/domain: reinsurance
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-actuarial
+  labels:
+    riskshield.io/domain: actuarial
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-fraud
+  labels:
+    riskshield.io/domain: fraud
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-distribution
+  labels:
+    riskshield.io/domain: distribution
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-customer
+  labels:
+    riskshield.io/domain: customer
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-product
+  labels:
+    riskshield.io/domain: product
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-finance
+  labels:
+    riskshield.io/domain: finance
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-compliance
+  labels:
+    riskshield.io/domain: compliance
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-third-party
+  labels:
+    riskshield.io/domain: third-party
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-telematics
+  labels:
+    riskshield.io/domain: telematics
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-analytics
+  labels:
+    riskshield.io/domain: analytics
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: riskshield-document
+  labels:
+    riskshield.io/domain: document
+    pod-security.kubernetes.io/enforce: restricted

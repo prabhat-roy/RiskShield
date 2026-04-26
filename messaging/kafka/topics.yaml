@@ -1,0 +1,145 @@
+# Topic naming convention from CLAUDE.md: {domain}.{entity}.{event}
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: policy.policy.issued, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 31536000000, compression.type: zstd }   # 1y
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: policy.endorsement.applied, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 31536000000, compression.type: zstd }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: policy.cancellation.scheduled, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: claims.fnol.received, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 24
+  replicas: 3
+  config: { retention.ms: 31536000000, compression.type: zstd }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: claims.adjudication.completed, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: claims.settlement.paid, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+metadata: { name: underwriting.referral.raised, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+kind: KafkaTopic
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 7776000000 }   # 90d
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: actuarial.reserve.recalculated, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: actuarial.ifrs17.cashflow.computed, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 220752000000, compression.type: zstd }   # 7y
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: fraud.alert.raised, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: reinsurance.cession.posted, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 220752000000 }   # 7y for reinsurer audit
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: reinsurance.bordereau.generated, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 220752000000, compression.type: zstd }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: finance.premium.received, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 220752000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: compliance.sanction.hit, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 220752000000 }   # 7y compliance audit
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: compliance.aml.alert, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 6
+  replicas: 3
+  config: { retention.ms: 220752000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: telematics.event.ingest, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 48
+  replicas: 3
+  config: { retention.ms: 604800000, compression.type: zstd }   # 7d hot, then archive to Cassandra
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: telematics.score.computed, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 24
+  replicas: 3
+  config: { retention.ms: 31536000000 }
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata: { name: customer.quote.created, namespace: kafka, labels: { strimzi.io/cluster: riskshield-kafka } }
+spec:
+  partitions: 12
+  replicas: 3
+  config: { retention.ms: 7776000000 }
