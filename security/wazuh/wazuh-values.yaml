@@ -1,0 +1,8 @@
+manager:
+  hostname: wazuh-manager
+  cluster: { name: riskshield-wazuh, key: change-me }
+indexer:
+  replicas: 3
+dashboard:
+  hosts:
+    - { host: wazuh.riskshield.internal }

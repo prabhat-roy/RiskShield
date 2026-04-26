@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: outbox-relay
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: outbox-relay, riskshield.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51002"

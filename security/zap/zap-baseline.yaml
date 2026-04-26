@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata: { name: zap-baseline, namespace: riskshield-security }
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: zap
+              image: ghcr.io/zaproxy/zaproxy:stable
+              args: ["zap-baseline.py","-t","https://api.riskshield.com","-r","report.html"]

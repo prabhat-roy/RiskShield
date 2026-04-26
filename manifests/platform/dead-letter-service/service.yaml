@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dead-letter-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: dead-letter-service, riskshield.io/domain: platform }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 51010, targetPort: 51010 }]
+  selector: { app.kubernetes.io/name: dead-letter-service }

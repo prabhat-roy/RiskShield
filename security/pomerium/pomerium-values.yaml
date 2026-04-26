@@ -1,0 +1,8 @@
+config:
+  rootDomain: pomerium.riskshield.internal
+  generateSignedJWT: true
+authenticate:
+  idp:
+    provider: oidc
+    url: https://keycloak.riskshield.internal
+ingressController: { enabled: true }

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tenant-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: tenant-service, riskshield.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51006"

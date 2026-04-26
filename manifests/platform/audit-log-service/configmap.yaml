@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: audit-log-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: audit-log-service, riskshield.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51008"

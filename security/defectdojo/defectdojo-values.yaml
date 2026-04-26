@@ -1,0 +1,10 @@
+tag: 2.36.0
+host: defectdojo.riskshield.internal
+extraEnv:
+  - { name: DD_DATABASE_URL, valueFrom: { secretKeyRef: { name: defectdojo-postgres, key: url } } }
+redis: { enabled: true }
+celery:
+  worker: { replicaCount: 2 }
+ingress:
+  enabled: true
+  hosts: [{ host: defectdojo.riskshield.internal, paths: [{ path: /, pathType: Prefix }] }]

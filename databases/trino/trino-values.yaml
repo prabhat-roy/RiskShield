@@ -1,0 +1,13 @@
+image: { repository: trinodb/trino, tag: 462 }
+coordinator: { jvm: { maxHeapSize: 8G } }
+worker:      { replicas: 3, jvm: { maxHeapSize: 16G } }
+catalogs:
+  postgresql: |
+    connector.name=postgresql
+    connection-url=jdbc:postgresql://postgres-riskshield/riskshield
+  clickhouse: |
+    connector.name=clickhouse
+    connection-url=jdbc:clickhouse://clickhouse:8123/riskshield_analytics
+ingress:
+  enabled: true
+  hosts: [{ host: trino.riskshield.internal, paths: [{ path: /, pathType: Prefix }] }]

@@ -1,0 +1,10 @@
+clusterName: riskshield.teleport.internal
+authentication:
+  type: github
+  githubConnector:
+    name: github
+    redirectUrl: https://teleport.riskshield.internal/v1/webapi/github/callback
+kubeClusterName: riskshield-prod
+ingress:
+  enabled: true
+  hostname: teleport.riskshield.internal

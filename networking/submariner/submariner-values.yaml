@@ -1,0 +1,7 @@
+broker: { server: broker.riskshield.internal, token: change-me }
+submariner:
+  clusterId: riskshield-prod
+  serviceCIDR: 10.45.0.0/16
+  clusterCIDR: 10.46.0.0/16
+  cableDriver: libreswan
+serviceDiscovery: { enabled: true }
