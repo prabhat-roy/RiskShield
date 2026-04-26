@@ -1,0 +1,7 @@
+﻿{
+  "server": "https://wpt.riskshield.internal",
+  "tests": [
+    { "url": "https://www.riskshield.internal/", "location": "Dulles:Chrome", "runs": 3, "connectivity": "4G" },
+    { "url": "https://app.riskshield.internal/", "location": "Mumbai:Chrome", "runs": 3, "connectivity": "Cable" }
+  ]
+}

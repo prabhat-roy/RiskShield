@@ -1,0 +1,4 @@
+﻿osv:
+  feeds: [pypi, npm, go, maven, rubygems, crates, oss-fuzz]
+  schedule: hourly
+  store: { postgres: { enabled: true } }

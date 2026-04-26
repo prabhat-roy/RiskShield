@@ -1,0 +1,5 @@
+﻿# Daytona workspace template for RiskShield
+name: riskshield
+repositoryUrl: https://github.com/prabhat-roy/RiskShield
+image: ghcr.io/devcontainers/images/universal:2
+ports: [{ port: 3000, protocol: HTTP }, { port: 8080, protocol: HTTP }]

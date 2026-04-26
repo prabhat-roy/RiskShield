@@ -1,0 +1,6 @@
+﻿# Sourcegraph (OSS) — universal code search across RiskShield
+image: { repository: sourcegraph/server, tag: 5.5.0 }
+sourcegraph:
+  externalURL: https://sourcegraph.riskshield.internal
+  repositoriesToAdd: [github.com/prabhat-roy/RiskShield]
+ingress: { enabled: true, hosts: [{ host: sourcegraph.riskshield.internal }] }

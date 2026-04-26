@@ -1,0 +1,3 @@
+﻿# Velociraptor — endpoint DFIR + monitoring
+image: { repository: velocidex/velociraptor, tag: latest }
+velociraptor: { server: { gui: { enabled: true } } }

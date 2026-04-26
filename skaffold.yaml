@@ -1,0 +1,16 @@
+﻿# Skaffold pipeline for RiskShield
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata: { name: riskshield }
+build:
+  artifacts:
+    - { image: riskshield/api-gateway, context: src/api-gateway }
+    - { image: riskshield/identity-service, context: src/identity-service }
+  local: { push: false }
+deploy:
+  helm:
+    releases:
+      - { name: api-gateway, chartPath: helm/charts/api-gateway, namespace: riskshield }
+profiles:
+  - name: prod
+    deploy: { kubectl: { manifests: ["manifests/prod/*.yaml"] } }

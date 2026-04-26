@@ -1,0 +1,11 @@
+﻿{
+  "appId": "com.riskshield.app",
+  "appName": "RiskShield",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" },
+  "plugins": {
+    "PushNotifications": { "presentationOptions": ["badge", "sound", "alert"] },
+    "Camera": { "permissions": ["camera", "photos"] },
+    "Geolocation": { "permissions": ["location"] }
+  }
+}

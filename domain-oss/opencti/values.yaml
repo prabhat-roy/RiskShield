@@ -1,0 +1,3 @@
+﻿# OpenCTI — cyber threat intelligence platform
+image: { repository: opencti/platform, tag: 6.4.0 }
+opencti: { connectors: [misp, mitre-attack, cve, abuseipdb, virustotal] }

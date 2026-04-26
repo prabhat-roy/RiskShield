@@ -1,0 +1,3 @@
+﻿# Cortex — observable analysis + active response (paired with TheHive)
+image: { repository: thehiveproject/cortex, tag: 3.x }
+cortex: { analyzers: [virustotal, abuseipdb, urlscan, hybrid-analysis] }

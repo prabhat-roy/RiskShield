@@ -1,0 +1,7 @@
+﻿# Apache Polaris — Iceberg REST catalog with RBAC + multi-engine support
+image: { repository: apache/polaris, tag: latest }
+polaris:
+  realm: riskshield
+  storage:
+    s3: { endpoint: http://minio.riskshield.svc:9000, region: us-east-1, bucket: riskshield-iceberg-warehouse }
+ingress: { enabled: true, hosts: [{ host: polaris.riskshield.internal }] }

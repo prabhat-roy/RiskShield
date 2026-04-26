@@ -1,0 +1,3 @@
+﻿# MITRE CALDERA — automated adversary emulation
+image: { repository: mitre/caldera, tag: latest }
+caldera: { plugins: [stockpile, response, atomic, training] }
