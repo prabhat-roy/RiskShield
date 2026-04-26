@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: settlement-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: settlement-service, riskshield.io/domain: claims }
+data:
+  LOG_LEVEL: info
+  PORT: "50083"

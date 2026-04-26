@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: form-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: form-service, riskshield.io/domain: product }
+data:
+  LOG_LEVEL: info
+  PORT: "50204"

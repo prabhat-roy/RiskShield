@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: exclusion-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: exclusion-service, riskshield.io/domain: product }
+data:
+  LOG_LEVEL: info
+  PORT: "50202"

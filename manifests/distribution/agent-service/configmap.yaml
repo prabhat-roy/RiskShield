@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agent-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: agent-service, riskshield.io/domain: distribution }
+data:
+  LOG_LEVEL: info
+  PORT: "50160"

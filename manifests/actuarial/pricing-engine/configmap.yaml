@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pricing-engine
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: pricing-engine, riskshield.io/domain: actuarial }
+data:
+  LOG_LEVEL: info
+  PORT: "50121"

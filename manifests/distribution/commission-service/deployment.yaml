@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commission-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: commission-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: distribution
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: commission-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: commission-service, riskshield.io/domain: distribution }
+    spec:
+      serviceAccountName: commission-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: commission-service
+          image: harbor.riskshield.internal/riskshield/commission-service:latest
+          ports: [{ containerPort: 50162, name: http }]
+          envFrom: [{ configMapRef: { name: commission-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50162 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50162 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

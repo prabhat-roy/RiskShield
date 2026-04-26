@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alert-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: alert-service, riskshield.io/domain: fraud }
+data:
+  LOG_LEVEL: info
+  PORT: "50144"

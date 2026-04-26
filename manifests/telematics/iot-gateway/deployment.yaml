@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iot-gateway
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: iot-gateway
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: telematics
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: iot-gateway } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: iot-gateway, riskshield.io/domain: telematics }
+    spec:
+      serviceAccountName: iot-gateway
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: iot-gateway
+          image: harbor.riskshield.internal/riskshield/iot-gateway:latest
+          ports: [{ containerPort: 50281, name: http }]
+          envFrom: [{ configMapRef: { name: iot-gateway } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50281 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50281 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

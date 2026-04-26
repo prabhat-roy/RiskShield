@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: appetite-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: appetite-service, riskshield.io/domain: underwriting }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50063, targetPort: 50063 }]
+  selector: { app.kubernetes.io/name: appetite-service }

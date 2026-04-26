@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: facultative-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: facultative-service, riskshield.io/domain: reinsurance }
+data:
+  LOG_LEVEL: info
+  PORT: "50101"

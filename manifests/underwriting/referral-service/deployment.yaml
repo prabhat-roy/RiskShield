@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: referral-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: referral-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: underwriting
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: referral-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: referral-service, riskshield.io/domain: underwriting }
+    spec:
+      serviceAccountName: referral-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: referral-service
+          image: harbor.riskshield.internal/riskshield/referral-service:latest
+          ports: [{ containerPort: 50064, name: http }]
+          envFrom: [{ configMapRef: { name: referral-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50064 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50064 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

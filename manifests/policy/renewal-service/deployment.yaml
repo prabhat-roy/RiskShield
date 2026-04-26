@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: renewal-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: renewal-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: policy
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: renewal-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: renewal-service, riskshield.io/domain: policy }
+    spec:
+      serviceAccountName: renewal-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: renewal-service
+          image: harbor.riskshield.internal/riskshield/renewal-service:latest
+          ports: [{ containerPort: 50042, name: http }]
+          envFrom: [{ configMapRef: { name: renewal-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50042 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50042 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

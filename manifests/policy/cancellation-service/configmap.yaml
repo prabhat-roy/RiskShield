@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cancellation-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: cancellation-service, riskshield.io/domain: policy }
+data:
+  LOG_LEVEL: info
+  PORT: "50043"

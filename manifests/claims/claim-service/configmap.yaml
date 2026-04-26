@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: claim-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: claim-service, riskshield.io/domain: claims }
+data:
+  LOG_LEVEL: info
+  PORT: "50080"

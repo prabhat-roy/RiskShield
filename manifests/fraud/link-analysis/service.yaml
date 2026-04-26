@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: link-analysis
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: link-analysis, riskshield.io/domain: fraud }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50142, targetPort: 50142 }]
+  selector: { app.kubernetes.io/name: link-analysis }

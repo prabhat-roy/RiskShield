@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coverage-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: coverage-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: product
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: coverage-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: coverage-service, riskshield.io/domain: product }
+    spec:
+      serviceAccountName: coverage-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: coverage-service
+          image: harbor.riskshield.internal/riskshield/coverage-service:latest
+          ports: [{ containerPort: 50201, name: http }]
+          envFrom: [{ configMapRef: { name: coverage-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50201 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50201 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

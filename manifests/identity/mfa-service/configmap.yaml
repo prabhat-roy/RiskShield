@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mfa-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: mfa-service, riskshield.io/domain: identity }
+data:
+  LOG_LEVEL: info
+  PORT: "50023"

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tpa-gateway
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: tpa-gateway, riskshield.io/domain: third-party }
+data:
+  LOG_LEVEL: info
+  PORT: "50263"

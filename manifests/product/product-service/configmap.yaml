@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: product-service, riskshield.io/domain: product }
+data:
+  LOG_LEVEL: info
+  PORT: "50200"

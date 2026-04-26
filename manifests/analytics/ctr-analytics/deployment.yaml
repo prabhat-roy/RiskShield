@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ctr-analytics
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: ctr-analytics
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: analytics
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: ctr-analytics } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: ctr-analytics, riskshield.io/domain: analytics }
+    spec:
+      serviceAccountName: ctr-analytics
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: ctr-analytics
+          image: harbor.riskshield.internal/riskshield/ctr-analytics:latest
+          ports: [{ containerPort: 50303, name: http }]
+          envFrom: [{ configMapRef: { name: ctr-analytics } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50303 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50303 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

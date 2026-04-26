@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecm-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: ecm-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: document
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: ecm-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: ecm-service, riskshield.io/domain: document }
+    spec:
+      serviceAccountName: ecm-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: ecm-service
+          image: harbor.riskshield.internal/riskshield/ecm-service:latest
+          ports: [{ containerPort: 50322, name: http }]
+          envFrom: [{ configMapRef: { name: ecm-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50322 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50322 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: settlement-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: settlement-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: claims
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: settlement-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: settlement-service, riskshield.io/domain: claims }
+    spec:
+      serviceAccountName: settlement-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: settlement-service
+          image: harbor.riskshield.internal/riskshield/settlement-service:latest
+          ports: [{ containerPort: 50083, name: http }]
+          envFrom: [{ configMapRef: { name: settlement-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50083 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50083 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alert-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: alert-service, riskshield.io/domain: fraud }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50144, targetPort: 50144 }]
+  selector: { app.kubernetes.io/name: alert-service }

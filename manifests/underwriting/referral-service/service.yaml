@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: referral-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: referral-service, riskshield.io/domain: underwriting }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50064, targetPort: 50064 }]
+  selector: { app.kubernetes.io/name: referral-service }

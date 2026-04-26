@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: renewal-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: renewal-service, riskshield.io/domain: policy }
+data:
+  LOG_LEVEL: info
+  PORT: "50042"

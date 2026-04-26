@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reserve-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: reserve-service, riskshield.io/domain: actuarial }
+data:
+  LOG_LEVEL: info
+  PORT: "50122"

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecm-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: ecm-service, riskshield.io/domain: document }
+data:
+  LOG_LEVEL: info
+  PORT: "50322"

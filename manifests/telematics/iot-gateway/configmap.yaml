@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iot-gateway
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: iot-gateway, riskshield.io/domain: telematics }
+data:
+  LOG_LEVEL: info
+  PORT: "50281"

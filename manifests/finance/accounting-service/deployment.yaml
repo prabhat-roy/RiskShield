@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounting-service
+  namespace: riskshield
+  labels:
+    app.kubernetes.io/name: accounting-service
+    app.kubernetes.io/part-of: riskshield
+    riskshield.io/domain: finance
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: accounting-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: accounting-service, riskshield.io/domain: finance }
+    spec:
+      serviceAccountName: accounting-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: accounting-service
+          image: harbor.riskshield.internal/riskshield/accounting-service:latest
+          ports: [{ containerPort: 50222, name: http }]
+          envFrom: [{ configMapRef: { name: accounting-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50222 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50222 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

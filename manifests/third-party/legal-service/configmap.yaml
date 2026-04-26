@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: legal-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: legal-service, riskshield.io/domain: third-party }
+data:
+  LOG_LEVEL: info
+  PORT: "50262"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: treaty-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: treaty-service, riskshield.io/domain: reinsurance }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50100, targetPort: 50100 }]
+  selector: { app.kubernetes.io/name: treaty-service }

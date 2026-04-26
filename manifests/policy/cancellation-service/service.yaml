@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cancellation-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: cancellation-service, riskshield.io/domain: policy }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50043, targetPort: 50043 }]
+  selector: { app.kubernetes.io/name: cancellation-service }

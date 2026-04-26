@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: link-analysis
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: link-analysis, riskshield.io/domain: fraud }
+data:
+  LOG_LEVEL: info
+  PORT: "50142"

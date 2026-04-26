@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loss-analytics
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: loss-analytics, riskshield.io/domain: analytics }
+data:
+  LOG_LEVEL: info
+  PORT: "50300"

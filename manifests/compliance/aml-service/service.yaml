@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aml-service
+  namespace: riskshield
+  labels: { app.kubernetes.io/name: aml-service, riskshield.io/domain: compliance }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50243, targetPort: 50243 }]
+  selector: { app.kubernetes.io/name: aml-service }
