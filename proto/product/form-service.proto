@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package riskshield.product.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.riskshield.product.v1";
+option java_multiple_files = true;
+
+// form-service: forms / endorsements catalogue
+service FormService {
+  rpc Health(HealthRequest) returns (HealthResponse);
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string status = 1;
+  string version = 2;
+  google.protobuf.Timestamp checked_at = 3;
+}

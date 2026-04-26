@@ -1,0 +1,8 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.common.events",
+  "name": "PartyRef",
+  "fields": [
+    { "name": "token", "type": "string", "doc": "Tokenised party reference; reverse-lookup gated by Vault" }
+  ]
+}

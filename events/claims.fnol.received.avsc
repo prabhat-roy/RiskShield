@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.claims.events",
+  "name": "FnolReceived",
+  "doc": "claims.fnol.received — First Notice of Loss received; triggers fraud + sanctions checks",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "claim_id",       "type": "string" },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "loss_date",      "type": { "type": "int", "logicalType": "date" } },
+    { "name": "reported_date",  "type": { "type": "int", "logicalType": "date" } },
+    { "name": "claimant_ref",   "type": "com.riskshield.common.events.PartyRef" },
+    { "name": "loss_type",      "type": "string" },
+    { "name": "loss_estimate",  "type": ["null","com.riskshield.common.events.Money"], "default": null },
+    { "name": "channel",        "type": "string" }
+  ]
+}

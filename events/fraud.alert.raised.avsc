@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.fraud.events",
+  "name": "FraudAlertRaised",
+  "doc": "fraud.alert.raised — fraud alert raised by GNN / link analysis / scoring",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "alert_id",       "type": "string" },
+    { "name": "claim_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": ["null","string"], "default": null },
+    { "name": "score",          "type": "string", "doc": "fixed-point 0-1" },
+    { "name": "model_version",  "type": "string" },
+    { "name": "indicators",     "type": { "type": "array", "items": "string" } }
+  ]
+}

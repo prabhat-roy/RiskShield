@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.distribution.events",
+  "name": "CommissionCalculated",
+  "doc": "distribution.commission.calculated — commission calculated for placement",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "commission_id",  "type": "string" },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "intermediary_id","type": "string" },
+    { "name": "amount",         "type": "com.riskshield.common.events.Money" }
+  ]
+}

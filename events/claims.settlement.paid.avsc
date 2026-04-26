@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.claims.events",
+  "name": "SettlementPaid",
+  "doc": "claims.settlement.paid — claim payment authorised and paid",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "claim_id",       "type": "string" },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "payee_ref",      "type": "com.riskshield.common.events.PartyRef" },
+    { "name": "amount_paid",    "type": "com.riskshield.common.events.Money" },
+    { "name": "payment_method", "type": "string" },
+    { "name": "stp",            "type": "boolean", "doc": "true if straight-through (no human touch)" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.policy.events",
+  "name": "EndorsementApplied",
+  "doc": "policy.endorsement.applied — mid-term endorsement applied",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "endorsement_id", "type": "string" },
+    { "name": "endorsement_type", "type": "string" },
+    { "name": "premium_delta",  "type": "com.riskshield.common.events.Money" }
+  ]
+}

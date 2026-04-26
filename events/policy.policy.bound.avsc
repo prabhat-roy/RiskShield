@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.policy.events",
+  "name": "PolicyBound",
+  "doc": "policy.policy.bound — emitted when a policy is bound (premium paid + sanctions cleared)",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "product_code",   "type": "string" },
+    { "name": "policyholder_ref", "type": "com.riskshield.common.events.PartyRef" },
+    { "name": "effective_date", "type": { "type": "int", "logicalType": "date" } },
+    { "name": "expiry_date",    "type": { "type": "int", "logicalType": "date" } },
+    { "name": "annual_premium", "type": "com.riskshield.common.events.Money" },
+    { "name": "channel",        "type": "string" }
+  ]
+}

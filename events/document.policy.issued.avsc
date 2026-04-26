@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.document.events",
+  "name": "PolicyDocumentIssued",
+  "doc": "document.policy.issued — policy document issued (signed via esign-service)",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "document_id",    "type": "string" },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "signature_hash", "type": "string" },
+    { "name": "uri",            "type": "string" }
+  ]
+}

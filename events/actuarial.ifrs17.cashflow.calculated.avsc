@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.actuarial.events",
+  "name": "Ifrs17CashflowCalculated",
+  "doc": "actuarial.ifrs17.cashflow.calculated — IFRS 17 cashflow + CSM update emitted by Haskell engine",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "contract_group_id", "type": "string" },
+    { "name": "measurement_model", "type": { "type": "enum", "name": "Ifrs17Model", "symbols": ["GMM","PAA","VFA"] } },
+    { "name": "csm_balance",    "type": "com.riskshield.common.events.Money" },
+    { "name": "loss_component", "type": "com.riskshield.common.events.Money" },
+    { "name": "coverage_units", "type": "long" },
+    { "name": "discount_rate",  "type": "string", "doc": "fixed-point string e.g. 0.0325" }
+  ]
+}

@@ -148,3 +148,4 @@ kafka-data/
 # Claude-specific local files (not pushed)
 CLAUDE.md
 memory/
+.services.json

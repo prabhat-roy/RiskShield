@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.claims.events",
+  "name": "LitigationOpened",
+  "doc": "claims.litigation.opened — litigation case opened on a claim",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "claim_id",       "type": "string" },
+    { "name": "case_number",    "type": "string" },
+    { "name": "jurisdiction",   "type": "string" }
+  ]
+}

@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package riskshield.common.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.riskshield.common.v1";
+option java_multiple_files = true;
+
+// PolicyId — opaque, immutable handle for a bound insurance contract.
+message PolicyId {
+  string value = 1;
+}
+
+// ClaimId — opaque, immutable handle for a claim.
+message ClaimId {
+  string value = 1;
+}
+
+// PartyRef — tokenised reference to a party (insured, claimant, beneficiary).
+// Reverse-lookup to PII gated by Vault.
+message PartyRef {
+  string token = 1;
+}
+
+// Address — postal address.
+message Address {
+  string line1 = 1;
+  string line2 = 2;
+  string city = 3;
+  string state = 4;
+  string country_code = 5;  // ISO 3166-1 alpha-2
+  string postal_code = 6;
+  GeoPoint geo = 7;
+}
+
+// GeoPoint — WGS84 lat/long (telematics + property risk).
+message GeoPoint {
+  double lat = 1;
+  double lng = 2;
+}
+
+// Money — fixed-point monetary amount in minor units of the currency.
+// NEVER use floats for money — see CLAUDE.md coding guidelines.
+message Money {
+  string currency_code = 1;  // ISO 4217 (e.g. "USD", "EUR", "GBP")
+  int64 minor_units = 2;     // e.g. 12345 = 123.45 USD
+}
+
+// Pagination — request side.
+message PageRequest {
+  int32 size = 1;
+  string page_token = 2;
+}
+
+// Pagination — response side.
+message PageResponse {
+  string next_page_token = 1;
+  int64 total_size = 2;
+}
+
+// AuditMetadata — captured on every privileged write (regulatory requirement).
+message AuditMetadata {
+  string actor_id = 1;
+  string actor_role = 2;
+  string ip_address = 3;
+  string user_agent = 4;
+  google.protobuf.Timestamp event_time = 5;
+}
+
+// SanctionScreeningResult — every new policy and claimant runs through OFAC/EU.
+// hit=true blocks policy issuance / claim payment until compliance review.
+message SanctionScreeningResult {
+  bool hit = 1;
+  string list_name = 2;          // OFAC SDN, EU consolidated, UN, HMT
+  string match_score = 3;        // fixed-point score, e.g. "0.92"
+  google.protobuf.Timestamp checked_at = 4;
+  string reference_id = 5;
+}
+
+// AcordRef — reference to an ACORD-formatted message (for broker boundary).
+message AcordRef {
+  string acord_form = 1;         // e.g. "AL3", "ACORD-25"
+  string version = 2;
+  string message_id = 3;
+}

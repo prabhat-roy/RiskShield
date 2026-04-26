@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.common.events",
+  "name": "Money",
+  "doc": "Fixed-point money — never use floats.",
+  "fields": [
+    { "name": "currency_code", "type": "string", "doc": "ISO 4217" },
+    { "name": "minor_units",   "type": "long",   "doc": "Amount in minor units (e.g. cents)" }
+  ]
+}

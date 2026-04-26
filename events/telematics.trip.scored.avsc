@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.telematics.events",
+  "name": "TripScored",
+  "doc": "telematics.trip.scored — telematics trip scored for UBI rating",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "trip_id",        "type": "string" },
+    { "name": "score",          "type": "string", "doc": "fixed-point 0-100" },
+    { "name": "distance_m",     "type": "long" },
+    { "name": "duration_s",     "type": "long" }
+  ]
+}

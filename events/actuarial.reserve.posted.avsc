@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.actuarial.events",
+  "name": "ReservePosted",
+  "doc": "actuarial.reserve.posted — IBNR / RBNS reserve posted; append-only ledger",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "reserve_id",     "type": "string" },
+    { "name": "claim_id",       "type": ["null","string"], "default": null },
+    { "name": "reserve_type",   "type": { "type": "enum", "name": "ReserveType", "symbols": ["IBNR","RBNS","ULAE","ALAE","UPR"] } },
+    { "name": "method",         "type": "string", "doc": "chain-ladder / BF / GLM / Bayesian" },
+    { "name": "amount",         "type": "com.riskshield.common.events.Money" }
+  ]
+}

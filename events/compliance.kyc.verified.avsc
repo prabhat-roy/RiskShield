@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.compliance.events",
+  "name": "KycVerified",
+  "doc": "compliance.kyc.verified — KYC verification outcome",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "subject_ref",    "type": "com.riskshield.common.events.PartyRef" },
+    { "name": "outcome",        "type": { "type": "enum", "name": "KycOutcome", "symbols": ["VERIFIED","REJECTED","MANUAL_REVIEW"] } }
+  ]
+}

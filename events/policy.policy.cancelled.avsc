@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.policy.events",
+  "name": "PolicyCancelled",
+  "doc": "policy.policy.cancelled — lapse, NTU, mid-term cancellation",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "reason_code",    "type": "string" },
+    { "name": "cancellation_date", "type": { "type": "int", "logicalType": "date" } },
+    { "name": "refund_amount",  "type": ["null","com.riskshield.common.events.Money"], "default": null }
+  ]
+}

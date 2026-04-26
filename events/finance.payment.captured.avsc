@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.finance.events",
+  "name": "PaymentCaptured",
+  "doc": "finance.payment.captured — inbound/outbound payment captured (ISO 20022)",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "payment_id",     "type": "string" },
+    { "name": "direction",      "type": { "type": "enum", "name": "PaymentDirection", "symbols": ["INBOUND","OUTBOUND"] } },
+    { "name": "amount",         "type": "com.riskshield.common.events.Money" },
+    { "name": "method",         "type": "string" }
+  ]
+}

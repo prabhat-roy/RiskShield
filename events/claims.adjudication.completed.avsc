@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.claims.events",
+  "name": "AdjudicationCompleted",
+  "doc": "claims.adjudication.completed — coverage and liability decision finalised",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "claim_id",       "type": "string" },
+    { "name": "decision",       "type": { "type": "enum", "name": "AdjudicationDecision", "symbols": ["COVERED","PARTIAL","DENIED","DEFERRED"] } },
+    { "name": "approved_amount", "type": "com.riskshield.common.events.Money" }
+  ]
+}

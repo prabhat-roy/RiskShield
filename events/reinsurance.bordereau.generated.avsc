@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.reinsurance.events",
+  "name": "BordereauGenerated",
+  "doc": "reinsurance.bordereau.generated — monthly bordereau file. Idempotent on (reinsurer_id, period).",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "bordereau_id",   "type": "string" },
+    { "name": "reinsurer_id",   "type": "string" },
+    { "name": "period",         "type": "string", "doc": "YYYY-MM" },
+    { "name": "treaty_type",    "type": { "type": "enum", "name": "TreatyType", "symbols": ["QUOTA_SHARE","SURPLUS","XOL","STOP_LOSS","FAC"] } },
+    { "name": "row_count",      "type": "int" },
+    { "name": "ceded_premium",  "type": "com.riskshield.common.events.Money" },
+    { "name": "ceded_losses",   "type": "com.riskshield.common.events.Money" },
+    { "name": "file_uri",       "type": "string" }
+  ]
+}

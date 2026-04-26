@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.finance.events",
+  "name": "PremiumBooked",
+  "doc": "finance.premium.booked — premium booked to ledger (append-only)",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "policy_id",      "type": "string" },
+    { "name": "premium_id",     "type": "string" },
+    { "name": "amount",         "type": "com.riskshield.common.events.Money" },
+    { "name": "earned",         "type": "com.riskshield.common.events.Money" },
+    { "name": "unearned",       "type": "com.riskshield.common.events.Money" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "com.riskshield.compliance.events",
+  "name": "SanctionScreeningChecked",
+  "doc": "compliance.sanction-screening.checked — every new policy and claimant. hit=true blocks.",
+  "fields": [
+    { "name": "event_id",       "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "event_time",     "type": { "type": "long",   "logicalType": "timestamp-millis" } },
+    { "name": "correlation_id", "type": "string" },
+    { "name": "actor_id",       "type": ["null","string"], "default": null },
+    { "name": "subject_ref",    "type": "com.riskshield.common.events.PartyRef" },
+    { "name": "context",        "type": { "type": "enum", "name": "ScreeningContext", "symbols": ["POLICY_ISSUANCE","CLAIM_PAYMENT","KYC_REFRESH"] } },
+    { "name": "hit",            "type": "boolean" },
+    { "name": "list_name",      "type": ["null","string"], "default": null, "doc": "OFAC SDN, EU consolidated, UN, HMT" },
+    { "name": "match_score",    "type": ["null","string"], "default": null, "doc": "fixed-point 0-1" }
+  ]
+}
