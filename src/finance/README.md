@@ -1,6 +1,6 @@
-# finance/
+﻿# finance/
 
-Finance & accounting — premium, payment, bordereaux ledger view, GL, reporting.
+Finance & accounting â€” premium, payment, bordereaux ledger view, GL, reporting.
 
 | Service | Lang | Port |
 |---|---|---|
@@ -10,4 +10,4 @@ Finance & accounting — premium, payment, bordereaux ledger view, GL, reporting
 | accounting-service  | Java | 50223 |
 | reporting-service   | Java | 50224 |
 
-Premium and claim ledger entries are **append-only**.
+Premium and claim ledger entries are append-only.

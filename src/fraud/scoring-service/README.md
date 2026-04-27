@@ -1,8 +1,8 @@
-# scoring-service
+﻿# scoring-service
 
-Service in the **fraud** domain of RiskShield.
+Service in the fraud domain of RiskShield.
 
-**Language:** Go · **Port:** 50143
+Language: Go Â· Port: 50143
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/scoring-service/](../../../helm/charts/scoring-service/) — Helm chart
-- [manifests/fraud/scoring-service/](../../../manifests/fraud/scoring-service/) — Raw K8s manifests
+- [helm/charts/scoring-service/](../../../helm/charts/scoring-service/) â€” Helm chart
+- [manifests/fraud/scoring-service/](../../../manifests/fraud/scoring-service/) â€” Raw K8s manifests

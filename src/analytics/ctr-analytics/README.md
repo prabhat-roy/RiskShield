@@ -1,8 +1,8 @@
-# ctr-analytics
+﻿# ctr-analytics
 
-Service in the **analytics** domain of RiskShield.
+Service in the analytics domain of RiskShield.
 
-**Language:** Go · **Port:** 50303
+Language: Go Â· Port: 50303
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/ctr-analytics/](../../../helm/charts/ctr-analytics/) — Helm chart
-- [manifests/analytics/ctr-analytics/](../../../manifests/analytics/ctr-analytics/) — Raw K8s manifests
+- [helm/charts/ctr-analytics/](../../../helm/charts/ctr-analytics/) â€” Helm chart
+- [manifests/analytics/ctr-analytics/](../../../manifests/analytics/ctr-analytics/) â€” Raw K8s manifests

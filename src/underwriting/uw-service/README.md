@@ -1,8 +1,8 @@
-# uw-service
+﻿# uw-service
 
-Service in the **underwriting** domain of RiskShield.
+Service in the underwriting domain of RiskShield.
 
-**Language:** Go · **Port:** 50060
+Language: Go Â· Port: 50060
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/uw-service/](../../../helm/charts/uw-service/) — Helm chart
-- [manifests/underwriting/uw-service/](../../../manifests/underwriting/uw-service/) — Raw K8s manifests
+- [helm/charts/uw-service/](../../../helm/charts/uw-service/) â€” Helm chart
+- [manifests/underwriting/uw-service/](../../../manifests/underwriting/uw-service/) â€” Raw K8s manifests

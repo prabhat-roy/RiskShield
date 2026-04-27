@@ -1,8 +1,8 @@
-# legal-service
+﻿# legal-service
 
-Service in the **third-party** domain of RiskShield.
+Service in the third-party domain of RiskShield.
 
-**Language:** Go · **Port:** 50262
+Language: Go Â· Port: 50262
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/legal-service/](../../../helm/charts/legal-service/) — Helm chart
-- [manifests/third-party/legal-service/](../../../manifests/third-party/legal-service/) — Raw K8s manifests
+- [helm/charts/legal-service/](../../../helm/charts/legal-service/) â€” Helm chart
+- [manifests/third-party/legal-service/](../../../manifests/third-party/legal-service/) â€” Raw K8s manifests

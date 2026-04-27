@@ -1,8 +1,8 @@
-# policy-service
+﻿# policy-service
 
-Service in the **policy** domain of RiskShield.
+Service in the policy domain of RiskShield.
 
-**Language:** Go · **Port:** 50040
+Language: Go Â· Port: 50040
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/policy-service/](../../../helm/charts/policy-service/) — Helm chart
-- [manifests/policy/policy-service/](../../../manifests/policy/policy-service/) — Raw K8s manifests
+- [helm/charts/policy-service/](../../../helm/charts/policy-service/) â€” Helm chart
+- [manifests/policy/policy-service/](../../../manifests/policy/policy-service/) â€” Raw K8s manifests

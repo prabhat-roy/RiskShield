@@ -1,8 +1,8 @@
-# accounting-service
+﻿# accounting-service
 
-Service in the **finance** domain of RiskShield.
+Service in the finance domain of RiskShield.
 
-**Language:** Go · **Port:** 50222
+Language: Go Â· Port: 50222
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/accounting-service/](../../../helm/charts/accounting-service/) — Helm chart
-- [manifests/finance/accounting-service/](../../../manifests/finance/accounting-service/) — Raw K8s manifests
+- [helm/charts/accounting-service/](../../../helm/charts/accounting-service/) â€” Helm chart
+- [manifests/finance/accounting-service/](../../../manifests/finance/accounting-service/) â€” Raw K8s manifests

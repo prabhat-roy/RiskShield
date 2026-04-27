@@ -1,6 +1,6 @@
-# claims/
+﻿# claims/
 
-Claims management — FNOL through settlement and litigation.
+Claims management â€” FNOL through settlement and litigation.
 
 | Service | Lang | Port |
 |---|---|---|
@@ -10,4 +10,4 @@ Claims management — FNOL through settlement and litigation.
 | settlement-service   | Java | 50083 |
 | litigation-service   | Java | 50084 |
 
-Sanction-screening + fraud graph run **synchronously** at FNOL — never bypass.
+Sanction-screening + fraud graph run synchronously at FNOL â€” never bypass.

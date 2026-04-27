@@ -1,8 +1,8 @@
-# mga-service
+﻿# mga-service
 
-Service in the **distribution** domain of RiskShield.
+Service in the distribution domain of RiskShield.
 
-**Language:** Go · **Port:** 50163
+Language: Go Â· Port: 50163
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/mga-service/](../../../helm/charts/mga-service/) — Helm chart
-- [manifests/distribution/mga-service/](../../../manifests/distribution/mga-service/) — Raw K8s manifests
+- [helm/charts/mga-service/](../../../helm/charts/mga-service/) â€” Helm chart
+- [manifests/distribution/mga-service/](../../../manifests/distribution/mga-service/) â€” Raw K8s manifests

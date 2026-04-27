@@ -1,8 +1,8 @@
-# claim-service
+﻿# claim-service
 
-Service in the **claims** domain of RiskShield.
+Service in the claims domain of RiskShield.
 
-**Language:** Go · **Port:** 50080
+Language: Go Â· Port: 50080
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/claim-service/](../../../helm/charts/claim-service/) — Helm chart
-- [manifests/claims/claim-service/](../../../manifests/claims/claim-service/) — Raw K8s manifests
+- [helm/charts/claim-service/](../../../helm/charts/claim-service/) â€” Helm chart
+- [manifests/claims/claim-service/](../../../manifests/claims/claim-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# kyc-service
+﻿# kyc-service
 
-Service in the **compliance** domain of RiskShield.
+Service in the compliance domain of RiskShield.
 
-**Language:** Go · **Port:** 50242
+Language: Go Â· Port: 50242
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/kyc-service/](../../../helm/charts/kyc-service/) — Helm chart
-- [manifests/compliance/kyc-service/](../../../manifests/compliance/kyc-service/) — Raw K8s manifests
+- [helm/charts/kyc-service/](../../../helm/charts/kyc-service/) â€” Helm chart
+- [manifests/compliance/kyc-service/](../../../manifests/compliance/kyc-service/) â€” Raw K8s manifests

@@ -1,5 +1,5 @@
-# claims-bff
+﻿# claims-bff
 
 Backend-for-frontend for claims portal
 
-**Domain:** `platform` · **Language:** go · **Port:** 50003
+Domain: `platform` Â· Language: go Â· Port: 50003

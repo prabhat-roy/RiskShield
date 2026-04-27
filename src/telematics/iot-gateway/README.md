@@ -1,8 +1,8 @@
-# iot-gateway
+﻿# iot-gateway
 
-Service in the **telematics** domain of RiskShield.
+Service in the telematics domain of RiskShield.
 
-**Language:** Go · **Port:** 50281
+Language: Go Â· Port: 50281
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/iot-gateway/](../../../helm/charts/iot-gateway/) — Helm chart
-- [manifests/telematics/iot-gateway/](../../../manifests/telematics/iot-gateway/) — Raw K8s manifests
+- [helm/charts/iot-gateway/](../../../helm/charts/iot-gateway/) â€” Helm chart
+- [manifests/telematics/iot-gateway/](../../../manifests/telematics/iot-gateway/) â€” Raw K8s manifests

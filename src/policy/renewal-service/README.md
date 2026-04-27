@@ -1,8 +1,8 @@
-# renewal-service
+﻿# renewal-service
 
-Service in the **policy** domain of RiskShield.
+Service in the policy domain of RiskShield.
 
-**Language:** Go · **Port:** 50042
+Language: Go Â· Port: 50042
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/renewal-service/](../../../helm/charts/renewal-service/) — Helm chart
-- [manifests/policy/renewal-service/](../../../manifests/policy/renewal-service/) — Raw K8s manifests
+- [helm/charts/renewal-service/](../../../helm/charts/renewal-service/) â€” Helm chart
+- [manifests/policy/renewal-service/](../../../manifests/policy/renewal-service/) â€” Raw K8s manifests

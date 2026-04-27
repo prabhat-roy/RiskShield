@@ -1,8 +1,8 @@
-# appetite-service
+﻿# appetite-service
 
-Service in the **underwriting** domain of RiskShield.
+Service in the underwriting domain of RiskShield.
 
-**Language:** Go · **Port:** 50063
+Language: Go Â· Port: 50063
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/appetite-service/](../../../helm/charts/appetite-service/) — Helm chart
-- [manifests/underwriting/appetite-service/](../../../manifests/underwriting/appetite-service/) — Raw K8s manifests
+- [helm/charts/appetite-service/](../../../helm/charts/appetite-service/) â€” Helm chart
+- [manifests/underwriting/appetite-service/](../../../manifests/underwriting/appetite-service/) â€” Raw K8s manifests

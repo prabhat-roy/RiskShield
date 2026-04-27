@@ -1,8 +1,8 @@
-# rbac-service
+﻿# rbac-service
 
-Service in the **identity** domain of RiskShield.
+Service in the identity domain of RiskShield.
 
-**Language:** Go · **Port:** 50024
+Language: Go Â· Port: 50024
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/rbac-service/](../../../helm/charts/rbac-service/) — Helm chart
-- [manifests/identity/rbac-service/](../../../manifests/identity/rbac-service/) — Raw K8s manifests
+- [helm/charts/rbac-service/](../../../helm/charts/rbac-service/) â€” Helm chart
+- [manifests/identity/rbac-service/](../../../manifests/identity/rbac-service/) â€” Raw K8s manifests

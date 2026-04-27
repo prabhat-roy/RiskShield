@@ -1,4 +1,4 @@
-# underwriting/
+﻿# underwriting/
 
 Underwriting workbench, risk assessment, rating, appetite, referral.
 
@@ -10,5 +10,5 @@ Underwriting workbench, risk assessment, rating, appetite, referral.
 | appetite-service | Java    | 50063 |
 | referral-service | Java    | 50064 |
 
-`rating-engine` is **pure Haskell** — every rating call stores full input/output snapshot
+`rating-engine` is pure Haskell â€” every rating call stores full input/output snapshot
 for regulatory back-testing. Do not introduce IO into the core.

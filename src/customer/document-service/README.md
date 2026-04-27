@@ -1,8 +1,8 @@
-# document-service
+﻿# document-service
 
-Service in the **customer** domain of RiskShield.
+Service in the customer domain of RiskShield.
 
-**Language:** Go · **Port:** 50183
+Language: Go Â· Port: 50183
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/document-service/](../../../helm/charts/document-service/) — Helm chart
-- [manifests/customer/document-service/](../../../manifests/customer/document-service/) — Raw K8s manifests
+- [helm/charts/document-service/](../../../helm/charts/document-service/) â€” Helm chart
+- [manifests/customer/document-service/](../../../manifests/customer/document-service/) â€” Raw K8s manifests

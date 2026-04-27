@@ -1,8 +1,8 @@
-# reporting-service
+﻿# reporting-service
 
-Service in the **finance** domain of RiskShield.
+Service in the finance domain of RiskShield.
 
-**Language:** Go · **Port:** 50223
+Language: Go Â· Port: 50223
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/reporting-service/](../../../helm/charts/reporting-service/) — Helm chart
-- [manifests/finance/reporting-service/](../../../manifests/finance/reporting-service/) — Raw K8s manifests
+- [helm/charts/reporting-service/](../../../helm/charts/reporting-service/) â€” Helm chart
+- [manifests/finance/reporting-service/](../../../manifests/finance/reporting-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# usage-based
+﻿# usage-based
 
-Service in the **telematics** domain of RiskShield.
+Service in the telematics domain of RiskShield.
 
-**Language:** Go · **Port:** 50282
+Language: Go Â· Port: 50282
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/usage-based/](../../../helm/charts/usage-based/) — Helm chart
-- [manifests/telematics/usage-based/](../../../manifests/telematics/usage-based/) — Raw K8s manifests
+- [helm/charts/usage-based/](../../../helm/charts/usage-based/) â€” Helm chart
+- [manifests/telematics/usage-based/](../../../manifests/telematics/usage-based/) â€” Raw K8s manifests

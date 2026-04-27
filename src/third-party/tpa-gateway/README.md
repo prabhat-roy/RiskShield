@@ -1,8 +1,8 @@
-# tpa-gateway
+﻿# tpa-gateway
 
-Service in the **third-party** domain of RiskShield.
+Service in the third-party domain of RiskShield.
 
-**Language:** Go · **Port:** 50263
+Language: Go Â· Port: 50263
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/tpa-gateway/](../../../helm/charts/tpa-gateway/) — Helm chart
-- [manifests/third-party/tpa-gateway/](../../../manifests/third-party/tpa-gateway/) — Raw K8s manifests
+- [helm/charts/tpa-gateway/](../../../helm/charts/tpa-gateway/) â€” Helm chart
+- [manifests/third-party/tpa-gateway/](../../../manifests/third-party/tpa-gateway/) â€” Raw K8s manifests

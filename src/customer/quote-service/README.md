@@ -1,8 +1,8 @@
-# quote-service
+﻿# quote-service
 
-Service in the **customer** domain of RiskShield.
+Service in the customer domain of RiskShield.
 
-**Language:** Go · **Port:** 50181
+Language: Go Â· Port: 50181
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/quote-service/](../../../helm/charts/quote-service/) — Helm chart
-- [manifests/customer/quote-service/](../../../manifests/customer/quote-service/) — Raw K8s manifests
+- [helm/charts/quote-service/](../../../helm/charts/quote-service/) â€” Helm chart
+- [manifests/customer/quote-service/](../../../manifests/customer/quote-service/) â€” Raw K8s manifests

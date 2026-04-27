@@ -1,6 +1,6 @@
-# Helm Charts — RiskShield
+﻿# Helm Charts â€” RiskShield
 
-One chart per service. Charts are **cloud-agnostic** — Kubernetes primitives only.
+One chart per service. Charts are cloud-agnostic â€” Kubernetes primitives only.
 Per-cloud differences live in `values-aws.yaml`, `values-gcp.yaml`, `values-azure.yaml`
 which add cloud-specific annotations (IRSA / Workload Identity / Pod Identity),
 storage classes, and ingress class names.
@@ -9,16 +9,16 @@ storage classes, and ingress class names.
 
 ```
 helm/charts/<service>/
-├── Chart.yaml
-├── values.yaml            ← cloud-agnostic defaults
-├── values-aws.yaml        ← IRSA + EBS + ALB ingress + AWS Secrets CSI
-├── values-gcp.yaml        ← Workload Identity + pd-balanced + GCE Ingress + Secret Manager CSI
-├── values-azure.yaml      ← Pod Identity + managed-csi + AGIC + Key Vault CSI
-└── templates/
-    ├── _helpers.tpl
-    ├── deployment.yaml
-    ├── service.yaml
-    └── serviceaccount.yaml
+â”œâ”€â”€ Chart.yaml
+â”œâ”€â”€ values.yaml            â† cloud-agnostic defaults
+â”œâ”€â”€ values-aws.yaml        â† IRSA + EBS + ALB ingress + AWS Secrets CSI
+â”œâ”€â”€ values-gcp.yaml        â† Workload Identity + pd-balanced + GCE Ingress + Secret Manager CSI
+â”œâ”€â”€ values-azure.yaml      â† Pod Identity + managed-csi + AGIC + Key Vault CSI
+â””â”€â”€ templates/
+    â”œâ”€â”€ _helpers.tpl
+    â”œâ”€â”€ deployment.yaml
+    â”œâ”€â”€ service.yaml
+    â””â”€â”€ serviceaccount.yaml
 ```
 
 ## Install

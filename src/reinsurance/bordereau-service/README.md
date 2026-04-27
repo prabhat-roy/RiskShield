@@ -1,8 +1,8 @@
-# bordereau-service
+﻿# bordereau-service
 
-Service in the **reinsurance** domain of RiskShield.
+Service in the reinsurance domain of RiskShield.
 
-**Language:** Go · **Port:** 50103
+Language: Go Â· Port: 50103
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/bordereau-service/](../../../helm/charts/bordereau-service/) — Helm chart
-- [manifests/reinsurance/bordereau-service/](../../../manifests/reinsurance/bordereau-service/) — Raw K8s manifests
+- [helm/charts/bordereau-service/](../../../helm/charts/bordereau-service/) â€” Helm chart
+- [manifests/reinsurance/bordereau-service/](../../../manifests/reinsurance/bordereau-service/) â€” Raw K8s manifests

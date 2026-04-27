@@ -1,8 +1,8 @@
-# form-service
+﻿# form-service
 
-Service in the **product** domain of RiskShield.
+Service in the product domain of RiskShield.
 
-**Language:** Go · **Port:** 50204
+Language: Go Â· Port: 50204
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/form-service/](../../../helm/charts/form-service/) — Helm chart
-- [manifests/product/form-service/](../../../manifests/product/form-service/) — Raw K8s manifests
+- [helm/charts/form-service/](../../../helm/charts/form-service/) â€” Helm chart
+- [manifests/product/form-service/](../../../manifests/product/form-service/) â€” Raw K8s manifests

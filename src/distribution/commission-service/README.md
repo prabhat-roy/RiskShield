@@ -1,8 +1,8 @@
-# commission-service
+﻿# commission-service
 
-Service in the **distribution** domain of RiskShield.
+Service in the distribution domain of RiskShield.
 
-**Language:** Go · **Port:** 50162
+Language: Go Â· Port: 50162
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/commission-service/](../../../helm/charts/commission-service/) — Helm chart
-- [manifests/distribution/commission-service/](../../../manifests/distribution/commission-service/) — Raw K8s manifests
+- [helm/charts/commission-service/](../../../helm/charts/commission-service/) â€” Helm chart
+- [manifests/distribution/commission-service/](../../../manifests/distribution/commission-service/) â€” Raw K8s manifests

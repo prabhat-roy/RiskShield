@@ -1,8 +1,8 @@
-# actuarial-service
+﻿# actuarial-service
 
-Service in the **actuarial** domain of RiskShield.
+Service in the actuarial domain of RiskShield.
 
-**Language:** Go · **Port:** 50120
+Language: Go Â· Port: 50120
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/actuarial-service/](../../../helm/charts/actuarial-service/) — Helm chart
-- [manifests/actuarial/actuarial-service/](../../../manifests/actuarial/actuarial-service/) — Raw K8s manifests
+- [helm/charts/actuarial-service/](../../../helm/charts/actuarial-service/) â€” Helm chart
+- [manifests/actuarial/actuarial-service/](../../../manifests/actuarial/actuarial-service/) â€” Raw K8s manifests

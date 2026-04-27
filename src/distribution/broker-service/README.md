@@ -1,8 +1,8 @@
-# broker-service
+﻿# broker-service
 
-Service in the **distribution** domain of RiskShield.
+Service in the distribution domain of RiskShield.
 
-**Language:** Go · **Port:** 50161
+Language: Go Â· Port: 50161
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/broker-service/](../../../helm/charts/broker-service/) — Helm chart
-- [manifests/distribution/broker-service/](../../../manifests/distribution/broker-service/) — Raw K8s manifests
+- [helm/charts/broker-service/](../../../helm/charts/broker-service/) â€” Helm chart
+- [manifests/distribution/broker-service/](../../../manifests/distribution/broker-service/) â€” Raw K8s manifests

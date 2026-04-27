@@ -1,8 +1,8 @@
-# fraud-service
+﻿# fraud-service
 
-Service in the **fraud** domain of RiskShield.
+Service in the fraud domain of RiskShield.
 
-**Language:** Go · **Port:** 50140
+Language: Go Â· Port: 50140
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/fraud-service/](../../../helm/charts/fraud-service/) — Helm chart
-- [manifests/fraud/fraud-service/](../../../manifests/fraud/fraud-service/) — Raw K8s manifests
+- [helm/charts/fraud-service/](../../../helm/charts/fraud-service/) â€” Helm chart
+- [manifests/fraud/fraud-service/](../../../manifests/fraud/fraud-service/) â€” Raw K8s manifests

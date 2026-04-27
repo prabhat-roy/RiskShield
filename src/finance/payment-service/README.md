@@ -1,8 +1,8 @@
-# payment-service
+﻿# payment-service
 
-Service in the **finance** domain of RiskShield.
+Service in the finance domain of RiskShield.
 
-**Language:** Go · **Port:** 50221
+Language: Go Â· Port: 50221
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/payment-service/](../../../helm/charts/payment-service/) — Helm chart
-- [manifests/finance/payment-service/](../../../manifests/finance/payment-service/) — Raw K8s manifests
+- [helm/charts/payment-service/](../../../helm/charts/payment-service/) â€” Helm chart
+- [manifests/finance/payment-service/](../../../manifests/finance/payment-service/) â€” Raw K8s manifests

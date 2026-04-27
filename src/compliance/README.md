@@ -1,6 +1,6 @@
-# compliance/
+﻿# compliance/
 
-Compliance & regulatory — Solvency II, sanctions, KYC, AML.
+Compliance & regulatory â€” Solvency II, sanctions, KYC, AML.
 
 | Service | Lang | Port |
 |---|---|---|
@@ -10,5 +10,5 @@ Compliance & regulatory — Solvency II, sanctions, KYC, AML.
 | kyc-service          | Java | 50243 |
 | aml-service          | Java | 50244 |
 
-Sanction-screening **must** run synchronously on every new policy and claimant.
+Sanction-screening must run synchronously on every new policy and claimant.
 A hit blocks issuance / payment. Cache TTL = 4h (CLAUDE.md rule).

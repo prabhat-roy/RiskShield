@@ -1,8 +1,8 @@
-# wording-service
+﻿# wording-service
 
-Service in the **product** domain of RiskShield.
+Service in the product domain of RiskShield.
 
-**Language:** Go · **Port:** 50203
+Language: Go Â· Port: 50203
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/wording-service/](../../../helm/charts/wording-service/) — Helm chart
-- [manifests/product/wording-service/](../../../manifests/product/wording-service/) — Raw K8s manifests
+- [helm/charts/wording-service/](../../../helm/charts/wording-service/) â€” Helm chart
+- [manifests/product/wording-service/](../../../manifests/product/wording-service/) â€” Raw K8s manifests

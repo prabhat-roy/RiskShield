@@ -1,8 +1,8 @@
-# referral-service
+﻿# referral-service
 
-Service in the **underwriting** domain of RiskShield.
+Service in the underwriting domain of RiskShield.
 
-**Language:** Go · **Port:** 50064
+Language: Go Â· Port: 50064
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/referral-service/](../../../helm/charts/referral-service/) — Helm chart
-- [manifests/underwriting/referral-service/](../../../manifests/underwriting/referral-service/) — Raw K8s manifests
+- [helm/charts/referral-service/](../../../helm/charts/referral-service/) â€” Helm chart
+- [manifests/underwriting/referral-service/](../../../manifests/underwriting/referral-service/) â€” Raw K8s manifests

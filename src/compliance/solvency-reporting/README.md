@@ -1,8 +1,8 @@
-# solvency-reporting
+﻿# solvency-reporting
 
-Service in the **compliance** domain of RiskShield.
+Service in the compliance domain of RiskShield.
 
-**Language:** Go · **Port:** 50240
+Language: Go Â· Port: 50240
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/solvency-reporting/](../../../helm/charts/solvency-reporting/) — Helm chart
-- [manifests/compliance/solvency-reporting/](../../../manifests/compliance/solvency-reporting/) — Raw K8s manifests
+- [helm/charts/solvency-reporting/](../../../helm/charts/solvency-reporting/) â€” Helm chart
+- [manifests/compliance/solvency-reporting/](../../../manifests/compliance/solvency-reporting/) â€” Raw K8s manifests

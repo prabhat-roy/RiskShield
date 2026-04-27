@@ -1,8 +1,8 @@
-# exclusion-service
+﻿# exclusion-service
 
-Service in the **product** domain of RiskShield.
+Service in the product domain of RiskShield.
 
-**Language:** Go · **Port:** 50202
+Language: Go Â· Port: 50202
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/exclusion-service/](../../../helm/charts/exclusion-service/) — Helm chart
-- [manifests/product/exclusion-service/](../../../manifests/product/exclusion-service/) — Raw K8s manifests
+- [helm/charts/exclusion-service/](../../../helm/charts/exclusion-service/) â€” Helm chart
+- [manifests/product/exclusion-service/](../../../manifests/product/exclusion-service/) â€” Raw K8s manifests

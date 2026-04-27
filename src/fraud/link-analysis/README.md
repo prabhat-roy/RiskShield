@@ -1,8 +1,8 @@
-# link-analysis
+﻿# link-analysis
 
-Service in the **fraud** domain of RiskShield.
+Service in the fraud domain of RiskShield.
 
-**Language:** Go · **Port:** 50142
+Language: Go Â· Port: 50142
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/link-analysis/](../../../helm/charts/link-analysis/) — Helm chart
-- [manifests/fraud/link-analysis/](../../../manifests/fraud/link-analysis/) — Raw K8s manifests
+- [helm/charts/link-analysis/](../../../helm/charts/link-analysis/) â€” Helm chart
+- [manifests/fraud/link-analysis/](../../../manifests/fraud/link-analysis/) â€” Raw K8s manifests

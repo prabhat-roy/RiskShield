@@ -1,8 +1,8 @@
-# repair-network
+﻿# repair-network
 
-Service in the **third-party** domain of RiskShield.
+Service in the third-party domain of RiskShield.
 
-**Language:** Go · **Port:** 50260
+Language: Go Â· Port: 50260
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/repair-network/](../../../helm/charts/repair-network/) — Helm chart
-- [manifests/third-party/repair-network/](../../../manifests/third-party/repair-network/) — Raw K8s manifests
+- [helm/charts/repair-network/](../../../helm/charts/repair-network/) â€” Helm chart
+- [manifests/third-party/repair-network/](../../../manifests/third-party/repair-network/) â€” Raw K8s manifests

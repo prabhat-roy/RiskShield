@@ -1,8 +1,8 @@
-# mfa-service
+﻿# mfa-service
 
-Service in the **identity** domain of RiskShield.
+Service in the identity domain of RiskShield.
 
-**Language:** Go · **Port:** 50023
+Language: Go Â· Port: 50023
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/mfa-service/](../../../helm/charts/mfa-service/) — Helm chart
-- [manifests/identity/mfa-service/](../../../manifests/identity/mfa-service/) — Raw K8s manifests
+- [helm/charts/mfa-service/](../../../helm/charts/mfa-service/) â€” Helm chart
+- [manifests/identity/mfa-service/](../../../manifests/identity/mfa-service/) â€” Raw K8s manifests

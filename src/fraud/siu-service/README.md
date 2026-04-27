@@ -1,8 +1,8 @@
-# siu-service
+﻿# siu-service
 
-Service in the **fraud** domain of RiskShield.
+Service in the fraud domain of RiskShield.
 
-**Language:** Go · **Port:** 50141
+Language: Go Â· Port: 50141
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/siu-service/](../../../helm/charts/siu-service/) — Helm chart
-- [manifests/fraud/siu-service/](../../../manifests/fraud/siu-service/) — Raw K8s manifests
+- [helm/charts/siu-service/](../../../helm/charts/siu-service/) â€” Helm chart
+- [manifests/fraud/siu-service/](../../../manifests/fraud/siu-service/) â€” Raw K8s manifests

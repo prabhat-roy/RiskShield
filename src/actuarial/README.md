@@ -1,4 +1,4 @@
-# actuarial/
+﻿# actuarial/
 
 Actuarial workbench, pricing engine, reserving, IFRS 17.
 
@@ -9,5 +9,5 @@ Actuarial workbench, pricing engine, reserving, IFRS 17.
 | reserve-service   | Java    | 50122 |
 | ifrs17-service    | Haskell | 50123 |
 
-`pricing-engine` and `ifrs17-service` are **pure Haskell** — preserve type safety, no IO.
+`pricing-engine` and `ifrs17-service` are pure Haskell â€” preserve type safety, no IO.
 Reserves and ledger entries are append-only.

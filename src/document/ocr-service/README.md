@@ -1,8 +1,8 @@
-# ocr-service
+﻿# ocr-service
 
-Service in the **document** domain of RiskShield.
+Service in the document domain of RiskShield.
 
-**Language:** Go · **Port:** 50321
+Language: Go Â· Port: 50321
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/ocr-service/](../../../helm/charts/ocr-service/) — Helm chart
-- [manifests/document/ocr-service/](../../../manifests/document/ocr-service/) — Raw K8s manifests
+- [helm/charts/ocr-service/](../../../helm/charts/ocr-service/) â€” Helm chart
+- [manifests/document/ocr-service/](../../../manifests/document/ocr-service/) â€” Raw K8s manifests

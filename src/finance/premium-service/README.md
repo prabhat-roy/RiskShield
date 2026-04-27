@@ -1,8 +1,8 @@
-# premium-service
+﻿# premium-service
 
-Service in the **finance** domain of RiskShield.
+Service in the finance domain of RiskShield.
 
-**Language:** Go · **Port:** 50220
+Language: Go Â· Port: 50220
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/premium-service/](../../../helm/charts/premium-service/) — Helm chart
-- [manifests/finance/premium-service/](../../../manifests/finance/premium-service/) — Raw K8s manifests
+- [helm/charts/premium-service/](../../../helm/charts/premium-service/) â€” Helm chart
+- [manifests/finance/premium-service/](../../../manifests/finance/premium-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# customer-sso
+﻿# customer-sso
 
-Service in the **identity** domain of RiskShield.
+Service in the identity domain of RiskShield.
 
-**Language:** Go · **Port:** 50021
+Language: Go Â· Port: 50021
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/customer-sso/](../../../helm/charts/customer-sso/) — Helm chart
-- [manifests/identity/customer-sso/](../../../manifests/identity/customer-sso/) — Raw K8s manifests
+- [helm/charts/customer-sso/](../../../helm/charts/customer-sso/) â€” Helm chart
+- [manifests/identity/customer-sso/](../../../manifests/identity/customer-sso/) â€” Raw K8s manifests

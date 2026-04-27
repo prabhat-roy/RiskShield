@@ -1,8 +1,8 @@
-# product-service
+﻿# product-service
 
-Service in the **product** domain of RiskShield.
+Service in the product domain of RiskShield.
 
-**Language:** Go · **Port:** 50200
+Language: Go Â· Port: 50200
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/product-service/](../../../helm/charts/product-service/) — Helm chart
-- [manifests/product/product-service/](../../../manifests/product/product-service/) — Raw K8s manifests
+- [helm/charts/product-service/](../../../helm/charts/product-service/) â€” Helm chart
+- [manifests/product/product-service/](../../../manifests/product/product-service/) â€” Raw K8s manifests

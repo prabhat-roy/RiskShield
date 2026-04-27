@@ -1,8 +1,8 @@
-# channel-service
+﻿# channel-service
 
-Service in the **distribution** domain of RiskShield.
+Service in the distribution domain of RiskShield.
 
-**Language:** Go · **Port:** 50164
+Language: Go Â· Port: 50164
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/channel-service/](../../../helm/charts/channel-service/) — Helm chart
-- [manifests/distribution/channel-service/](../../../manifests/distribution/channel-service/) — Raw K8s manifests
+- [helm/charts/channel-service/](../../../helm/charts/channel-service/) â€” Helm chart
+- [manifests/distribution/channel-service/](../../../manifests/distribution/channel-service/) â€” Raw K8s manifests

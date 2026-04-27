@@ -1,6 +1,6 @@
-# fraud/
+﻿# fraud/
 
-Fraud detection — orchestrator, SIU, graph link analysis, scoring, alerting.
+Fraud detection â€” orchestrator, SIU, graph link analysis, scoring, alerting.
 
 | Service | Lang | Port |
 |---|---|---|
@@ -10,5 +10,5 @@ Fraud detection — orchestrator, SIU, graph link analysis, scoring, alerting.
 | scoring-service  | Python | 50143 |
 | alert-service    | Python | 50144 |
 
-Graph link analysis runs against Neo4j at **claim time** — flags suspicious patterns
+Graph link analysis runs against Neo4j at claim time â€” flags suspicious patterns
 before any payment is authorised, not in batch overnight.

@@ -1,8 +1,8 @@
-# sanction-screening
+﻿# sanction-screening
 
-Service in the **compliance** domain of RiskShield.
+Service in the compliance domain of RiskShield.
 
-**Language:** Go · **Port:** 50241
+Language: Go Â· Port: 50241
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/sanction-screening/](../../../helm/charts/sanction-screening/) — Helm chart
-- [manifests/compliance/sanction-screening/](../../../manifests/compliance/sanction-screening/) — Raw K8s manifests
+- [helm/charts/sanction-screening/](../../../helm/charts/sanction-screening/) â€” Helm chart
+- [manifests/compliance/sanction-screening/](../../../manifests/compliance/sanction-screening/) â€” Raw K8s manifests

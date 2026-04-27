@@ -1,8 +1,8 @@
-# reserve-service
+﻿# reserve-service
 
-Service in the **actuarial** domain of RiskShield.
+Service in the actuarial domain of RiskShield.
 
-**Language:** Go · **Port:** 50122
+Language: Go Â· Port: 50122
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/reserve-service/](../../../helm/charts/reserve-service/) — Helm chart
-- [manifests/actuarial/reserve-service/](../../../manifests/actuarial/reserve-service/) — Raw K8s manifests
+- [helm/charts/reserve-service/](../../../helm/charts/reserve-service/) â€” Helm chart
+- [manifests/actuarial/reserve-service/](../../../manifests/actuarial/reserve-service/) â€” Raw K8s manifests

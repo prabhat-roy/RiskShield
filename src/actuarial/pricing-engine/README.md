@@ -1,8 +1,8 @@
-# pricing-engine
+﻿# pricing-engine
 
-Service in the **actuarial** domain of RiskShield.
+Service in the actuarial domain of RiskShield.
 
-**Language:** Go · **Port:** 50121
+Language: Go Â· Port: 50121
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/pricing-engine/](../../../helm/charts/pricing-engine/) — Helm chart
-- [manifests/actuarial/pricing-engine/](../../../manifests/actuarial/pricing-engine/) — Raw K8s manifests
+- [helm/charts/pricing-engine/](../../../helm/charts/pricing-engine/) â€” Helm chart
+- [manifests/actuarial/pricing-engine/](../../../manifests/actuarial/pricing-engine/) â€” Raw K8s manifests
