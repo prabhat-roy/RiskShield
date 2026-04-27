@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: riskshield-event-enrichment, namespace: riskshield }
+spec:
+  deploymentName: riskshield-flink
+  job:
+    jarURI: s3://riskshield-flink-jobs/event-enrichment.jar
+    parallelism: 4
+    upgradeMode: savepoint
+    args: ["--source-topic", "riskshield.cdc.public.events", "--sink-topic", "riskshield.events.enriched"]

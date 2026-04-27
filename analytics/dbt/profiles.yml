@@ -1,0 +1,19 @@
+﻿riskshield:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres.riskshield.svc
+      user: dbt
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      port: 5432
+      dbname: riskshield_warehouse
+      schema: public
+      threads: 8
+    prod:
+      type: trino
+      host: trino.riskshield.svc
+      port: 8080
+      catalog: iceberg
+      schema: riskshield_mart
+      threads: 16

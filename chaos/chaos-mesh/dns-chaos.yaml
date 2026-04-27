@@ -1,0 +1,9 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: DNSChaos
+metadata: { name: riskshield-dns-error, namespace: chaos-mesh }
+spec:
+  action: error
+  mode: all
+  patterns: ["*.riskshield.svc.cluster.local"]
+  selector: { namespaces: [riskshield] }
+  duration: 2m

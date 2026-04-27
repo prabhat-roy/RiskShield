@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: riskshield-anomaly-detection, namespace: riskshield }
+spec:
+  deploymentName: riskshield-flink
+  job:
+    jarURI: s3://riskshield-flink-jobs/anomaly-detection.jar
+    parallelism: 6
+    upgradeMode: savepoint
+    args: ["--source-topic", "riskshield.metrics.raw", "--sink-topic", "riskshield.alerts.anomaly"]

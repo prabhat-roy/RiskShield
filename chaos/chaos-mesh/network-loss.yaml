@@ -1,0 +1,9 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata: { name: riskshield-network-loss, namespace: chaos-mesh }
+spec:
+  action: loss
+  mode: one
+  selector: { namespaces: [riskshield], labelSelectors: { tier: api } }
+  loss: { loss: "10", correlation: "25" }
+  duration: 5m

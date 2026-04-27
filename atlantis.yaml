@@ -1,0 +1,35 @@
+﻿version: 3
+projects:
+  - name: riskshield-aws
+    dir: infra/terraform/aws
+    workspace: prod
+    workflow: tf-prod
+    autoplan: { when_modified: ["*.tf", "*.tfvars"], enabled: true }
+    apply_requirements: [approved, mergeable]
+  - name: riskshield-gcp
+    dir: infra/terraform/gcp
+    workspace: prod
+    workflow: tf-prod
+    autoplan: { when_modified: ["*.tf", "*.tfvars"], enabled: true }
+    apply_requirements: [approved, mergeable]
+  - name: riskshield-azure
+    dir: infra/terraform/azure
+    workspace: prod
+    workflow: tf-prod
+    autoplan: { when_modified: ["*.tf", "*.tfvars"], enabled: true }
+    apply_requirements: [approved, mergeable]
+workflows:
+  tf-prod:
+    plan:
+      steps:
+        - run: terraform init -backend-config="key=riskshield/$WORKSPACE.tfstate"
+        - run: terraform validate
+        - run: tflint
+        - run: trivy config --severity HIGH,CRITICAL .
+        - plan: { extra_args: [-var-file=prod.tfvars] }
+        - run: infracost diff --path . --format diff
+    apply:
+      steps:
+        - run: |
+            if [ -f .ATLANTIS_APPROVED ]; then echo OK; else exit 1; fi
+        - apply

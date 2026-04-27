@@ -1,0 +1,6 @@
+﻿plugins:
+  - { id: tech-radar, config: { url: https://github.com/prabhat-roy/RiskShield/raw/main/backstage/tech-radar.json } }
+  - { id: lighthouse, config: { baseUrl: https://lhci.riskshield.internal } }
+  - { id: opencost,   config: { baseUrl: https://opencost.riskshield.internal } }
+  - { id: argocd,     config: { url: https://argocd.riskshield.internal, token: "${ARGOCD_TOKEN}" } }
+  - { id: kubernetes, config: { clusters: [{ name: riskshield-aws, url: https://eks.riskshield.aws.internal }, { name: riskshield-gcp, url: https://gke.riskshield.gcp.internal }, { name: riskshield-azure, url: https://aks.riskshield.azure.internal }] } }

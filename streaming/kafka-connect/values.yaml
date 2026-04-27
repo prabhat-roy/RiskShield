@@ -1,0 +1,9 @@
+﻿image: { repository: confluentinc/cp-kafka-connect, tag: 7.7.1 }
+replicas: 3
+config:
+  bootstrap.servers: kafka.riskshield.svc:9092
+  group.id: riskshield-connect
+  config.storage.topic: riskshield.connect.configs
+  offset.storage.topic: riskshield.connect.offsets
+  status.storage.topic: riskshield.connect.status
+  plugin.path: /usr/share/connectors,/usr/share/confluent-hub-components
